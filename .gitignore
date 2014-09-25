@@ -41,3 +41,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+SDL2/VisualC/tests/testatomic/testatomic_VS2012.vcxproj
+*.bmp
+*.install
+*.png
+*.png
+*.m4
+*.o
