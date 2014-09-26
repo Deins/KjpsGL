@@ -280,9 +280,9 @@ float getDeltaTime()
     return deltaTime;
 }
 
-bool setVsync(bool state)
+void setVsync(bool state)
 {
-    return SDL_GL_SetSwapInterval(state) == 0;
+    if (SDL_GL_SetSwapInterval(state) != 0) fatalError("Can't setVsync()!");
 }
 
 void drawArrays(const vector<Vec2>& vertices,unsigned mode)
