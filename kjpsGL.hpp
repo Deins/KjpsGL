@@ -12,221 +12,222 @@
 
 namespace kjpsgl
 {
-    //! 2D Vektors
-    struct Vec2
-    {
-        float x; //!< x komponente
-        float y; //!< y komponente
-        Vec2(float x = 0.0f, float y = 0.0f);
-        float magnitude(); //!< aprēķina vektora garumu \return vektora garums
-        Vec2 normalized(); //!< \return normalizēts vektors (virziena vektors ar garumu 1)
-    };
+//! 2D Vektors
+struct Vec2
+{
+    float x; //!< x komponente
+    float y; //!< y komponente
+    Vec2(float x = 0.0f, float y = 0.0f);
+    float magnitude(); //!< aprēķina vektora garumu \return vektora garums
+    Vec2 normalized(); //!< \return normalizēts vektors (virziena vektors ar garumu 1)
+};
 
-    //! RGBA krāsa
-    struct Color
-    {
-        unsigned char r;//!< krāsas sarkanā komponente
-        unsigned char g;//!< krāsas zaļā komponente
-        unsigned char b;//!< krāsas zilā komponente
-        unsigned char a;//!< krāsas alpha (caurspīdības) komponente
+//! RGBA krāsa
+struct Color
+{
+    unsigned char r;//!< krāsas sarkanā komponente
+    unsigned char g;//!< krāsas zaļā komponente
+    unsigned char b;//!< krāsas zilā komponente
+    unsigned char a;//!< krāsas alpha (caurspīdības) komponente
 
-        Color(unsigned char r=0, unsigned char g=0, unsigned char b=0, unsigned char a = 255);
-    };
+    Color(unsigned char r=0, unsigned char g=0, unsigned char b=0, unsigned char a = 255);
+};
 
-    /*! \brief pārvērš mainīgo par tekstu
-        \param v mainīgais kura vērtību pārērst par tekstu
-        \return v tekstuālu reprezentāciju
-    */
-    template <typename T>
-    std::string toString(const T& v){
-        std::ostringstream ss;
-        ss << v;
-        return ss.str();
-    }
+/*! \brief pārvērš mainīgo par tekstu
+    \param v mainīgais kura vērtību pārērst par tekstu
+    \return v tekstuālu reprezentāciju
+*/
+template <typename T>
+std::string toString(const T& v)
+{
+    std::ostringstream ss;
+    ss << v;
+    return ss.str();
+}
 
-    /*!
-        \brief Inicializē bibliotēku un izveido zīmēšanas logu
-        \param width loga platums vai fullscreen režīmā x izšķirtspēja (0 ja vēlas logu atvērt pa visu ekrānu vai fullscreen režīmā izmantot noklusēto monitora izšķirtspēju)
-        \param height loga augstums vai fullscreen režīmā y izšķirtspēja (0 ja vēlas logu atvērt pa visu ekrānu vai fullscreen režīmā izmantot noklusēto monitora izšķirtspēju)
-        \param fullscreen vai logu atvērt fullscreen režīmā (true=fullscreen;false=windowed)
-        \param msaa MSAA anti aliasing kvalitāte. Atļautās vērtības (ja atbalsta video karte) ir 0 (izslēgts), 2, 4, 8, 16 vai 32
-        \image html aa.gif "Kā izskatās anti aliasing"
-    */
-    void init(int width = 0, int height = 0, bool fullscreen = false, int msaa = 8);
+/*!
+    \brief Inicializē bibliotēku un izveido zīmēšanas logu
+    \param width loga platums vai fullscreen režīmā x izšķirtspēja (0 ja vēlas logu atvērt pa visu ekrānu vai fullscreen režīmā izmantot noklusēto monitora izšķirtspēju)
+    \param height loga augstums vai fullscreen režīmā y izšķirtspēja (0 ja vēlas logu atvērt pa visu ekrānu vai fullscreen režīmā izmantot noklusēto monitora izšķirtspēju)
+    \param fullscreen vai logu atvērt fullscreen režīmā (true=fullscreen;false=windowed)
+    \param msaa MSAA anti aliasing kvalitāte. Atļautās vērtības (ja atbalsta video karte) ir 0 (izslēgts), 2, 4, 8, 16 vai 32
+    \image html aa.gif "Kā izskatās anti aliasing"
+*/
+void init(int width = 0, int height = 0, bool fullscreen = false, int msaa = 8);
 
-    /*!
-        \brief Atsvaidzina bibliotēku
-         Atsvaidzinot bibliotēku tā saņem visus loga notikumus un citus operētējsistēmas ziņojumus, iegūst svaigu informāciju par tastatūru, peli u.c. ievad ierīcēm.
-         Šo funkciju jāizsauc regulāri, citādi operētējsistēma var paziņot ka programma ir "not responding", jo no tās netiek nolasīti ziņojumi.
-         Parasti šo funkciju izsauc vienreiz katrā kadrā.
-    */
-    void update();
+/*!
+    \brief Atsvaidzina bibliotēku
+    \details Atsvaidzinot bibliotēku tā saņem visus loga notikumus un citus operētējsistēmas ziņojumus, iegūst svaigu informāciju par tastatūru, peli u.c. ievad ierīcēm.
+     Šo funkciju jāizsauc regulāri, citādi operētējsistēma var paziņot ka programma ir "not responding", jo no tās netiek nolasīti ziņojumi.
+     Parasti šo funkciju izsauc vienreiz katrā kadrā.
+*/
+void update();
 
-    /*!
-        \brief Attēlo uzzīmēto uz ekrāna.
-        Bibliotēka veic tehniku sauktu par "Double-Buffering".
-        Dobule-Buffering nosaka, ka ir 2 bufferi, 1 no tiem tiek attēlots kamēr otrā notiek zīmēšana.
-        display() samaina šos buferus vietām tādējādi attēlojot līdz šim uzzīmēto.
-        Double buffering ir vajadzīgs lai novērstu dažādus vizuālus artifaktus un neļautu attēlot pusuzzīmētu attēlu.
-        Taču pat ar double buffering iespējama vizuāla nepilnība "Screen tearing", lai to novērstu skatiet setVsync();
-        \image html double.png "Double-Buffering vizualizācija"
-        \see setVsync()
-        \see http://en.wikipedia.org/wiki/Multiple_buffering
-    */
-    void display();
+/*!
+    \brief Attēlo uzzīmēto uz ekrāna.
+    \defails Bibliotēka veic tehniku sauktu par "Double-Buffering".
+    Dobule-Buffering nosaka, ka ir 2 bufferi, 1 no tiem tiek attēlots kamēr otrā notiek zīmēšana.
+    display() samaina šos buferus vietām tādējādi attēlojot līdz šim uzzīmēto.
+    Double buffering ir vajadzīgs lai novērstu dažādus vizuālus artifaktus un neļautu attēlot pusuzzīmētu attēlu.
+    Taču pat ar double buffering iespējama vizuāla nepilnība "Screen tearing", lai to novērstu skatiet setVsync();
+    \image html double.png "Double-Buffering vizualizācija"
+    \see setVsync()
+    \see http://en.wikipedia.org/wiki/Multiple_buffering
+*/
+void display();
 
-    /*!
-        \brief nomaina loga virsrakstu
-        \param title loga jaunais virsraksts
-    */
-    void setWindowTitle(const std::string& title);
-    //! \return pašreizējo loga platumu vai fullscreen režīmā izšķirtspēju
-    int getWindowWidth();
-    //! \return pašreizējo loga augstumu vai fullscreen režīmā izšķirtspēju
-    int getWindowHeight();
+/*!
+    \brief nomaina loga virsrakstu
+    \param title loga jaunais virsraksts
+*/
+void setWindowTitle(const std::string& title);
+//! \return pašreizējo loga platumu vai fullscreen režīmā izšķirtspēju
+int getWindowWidth();
+//! \return pašreizējo loga augstumu vai fullscreen režīmā izšķirtspēju
+int getWindowHeight();
 
-    /*!
-        \brief Iegūst laiku kādā tika izpildītas darbības starp pēdējiem diviem update() izsaukumiem (ieskaitot pašu update() izsaukuma laiku)
-        \details Šī informācija ir noderīga lai varētu veikt animācijas pareizā ātrumā neatkarīgi no tā cik daudz kadru sekundē dators spējīgs attēlot.
-        Piemēram, kustinot bumbu 1px katrā kadrā, bumba tiks pakustināta par 1000px ja dators spēj apstrādāt 1000 kadrus sekundē.
-        Taču tikai 100px ja dators ir lēns un spēj apstrādāt tikai 100 kadrus. Šo problēmu var vienkārši atrisināt.
-        Ja vēlamies kustināt bumbu 100px sekundē tad 100 kadros sekundē kustinam bumbu katrā kadrā par 1px, ja dators strādā 50 kadros sekundē bumbu katrā kadrā pakustinam pa 2px.
-        To vienkārši varam implementēt šādi bumbasPozīcija += ātrums * getDeltaTime(); Tādējādi mēs pielāgojamies datora ātrdarbībai. (tas strādā tikai tad ja update izsauc 1reiz kadrā)
-        \return laiks sekundēs cik ilgs pagājis starp pēdējiem diviem update izsaukumiem. (ja update izsauc 1x kadrā, tad tas norāda cik ilgā laikā dators izpildījis pēdējo kadru)
-        \see update()
-    */
-    float getDeltaTime();
+/*!
+    \brief Iegūst laiku kādā tika izpildītas darbības starp pēdējiem diviem update() izsaukumiem (ieskaitot pašu update() izsaukuma laiku)
+    \details Šī informācija ir noderīga lai varētu veikt animācijas pareizā ātrumā neatkarīgi no tā cik daudz kadru sekundē dators spējīgs attēlot.
+    Piemēram, kustinot bumbu 1px katrā kadrā, bumba tiks pakustināta par 1000px ja dators spēj apstrādāt 1000 kadrus sekundē.
+    Taču tikai 100px ja dators ir lēns un spēj apstrādāt tikai 100 kadrus. Šo problēmu var vienkārši atrisināt.
+    Ja vēlamies kustināt bumbu 100px sekundē tad 100 kadros sekundē kustinam bumbu katrā kadrā par 1px, ja dators strādā 50 kadros sekundē bumbu katrā kadrā pakustinam pa 2px.
+    To vienkārši varam implementēt šādi bumbasPozīcija += ātrums * getDeltaTime(); Tādējādi mēs pielāgojamies datora ātrdarbībai. (tas strādā tikai tad ja update izsauc 1reiz kadrā)
+    \return laiks sekundēs cik ilgs pagājis starp pēdējiem diviem update izsaukumiem. (ja update izsauc 1x kadrā, tad tas norāda cik ilgā laikā dators izpildījis pēdējo kadru)
+    \see update()
+*/
+float getDeltaTime();
 
-    /*!
-        \brief ieslēdz vai izslēdz vsync.
-        \param enabled true lai ieslēgtu, false lai izslēgtu
-        \details Vsync atrisina vizuālu problēmu sauktu par "Screen tearing".
-        Tas notiek tad, ja buferi tiek samainīti laikā kad monitors ir atsvaidzināšanas processā.
-        Vsync sinhronizē buferu apmaiņu ar monitora atsvaidzes intensitāti (refresh rate).
-        \image html vsync.jpg "Screen tearing piemērs"
-        \see display()
-        \see http://en.wikipedia.org/wiki/Screen_tearing
-    */
-    void setVsync(bool enabled);
+/*!
+    \brief ieslēdz vai izslēdz vsync.
+    \param enabled true lai ieslēgtu, false lai izslēgtu
+    \details Vsync atrisina vizuālu problēmu sauktu par "Screen tearing".
+    Tas notiek tad, ja buferi tiek samainīti laikā kad monitors ir atsvaidzināšanas processā.
+    Vsync sinhronizē buferu apmaiņu ar monitora atsvaidzes intensitāti (refresh rate).
+    \image html vsync.jpg "Screen tearing piemērs"
+    \see display()
+    \see http://en.wikipedia.org/wiki/Screen_tearing
+*/
+void setVsync(bool enabled);
 
-    /*! \brief Notīra zīmējamo bufferi.
-        \param red notīrāmas krāsas red vērtība [0,255]
-        \param green notīrāmas krāsas green vērtība [0,255]
-        \param blue notīrāmas krāsas blue vērtība [0,255]*/
-    void clearScreen(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
+/*! \brief Notīra zīmējamo bufferi.
+    \param red notīrāmas krāsas red vērtība [0,255]
+    \param green notīrāmas krāsas green vērtība [0,255]
+    \param blue notīrāmas krāsas blue vērtība [0,255]*/
+void clearScreen(unsigned char red = 0, unsigned char green = 0, unsigned char blue = 0);
 
-    /*! \brief Uzstāda zīmēšanas skatu
-        \param left skata labā mala (x1 kordinate)
-        \param bottom skata apakšējā mala (y1 kordinate)
-        \param right skata labā mala (x2 kordinate)
-        \param top skata augšējā mala (y2 kordinate)*/
-    void setView(float left, float bottom, float right, float top);
+/*! \brief Uzstāda zīmēšanas skatu
+    \param left skata labā mala (x1 kordinate)
+    \param bottom skata apakšējā mala (y1 kordinate)
+    \param right skata labā mala (x2 kordinate)
+    \param top skata augšējā mala (y2 kordinate)*/
+void setView(float left, float bottom, float right, float top);
 
-    /*! \brief Uzstāda zīmēšanas krāsu
-        \param red krāsas red vērtība [0,255]
-        \param green krāsas green vērtība [0,255]
-        \param blue krāsas blue vērtība [0,255]
-        \param alpha caurspīdība [0(pilnīgi caurspīdīgs), 255(pilnīgi necaurspīdīgs)]*/
-    void setColor(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha = 255);
+/*! \brief Uzstāda zīmēšanas krāsu
+    \param red krāsas red vērtība [0,255]
+    \param green krāsas green vērtība [0,255]
+    \param blue krāsas blue vērtība [0,255]
+    \param alpha caurspīdība [0(pilnīgi caurspīdīgs), 255(pilnīgi necaurspīdīgs)]*/
+void setColor(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha = 255);
 
-    /*! \brief Uzzīmē trijstūri ar virsotnēm A,B,C
-        \param ax A x koordinate
-        \param ay A y koordinate
-        \param bx B x koordinate
-        \param by B y koordinate
-        \param cx C x koordinate
-        \param cy C y koordinate*/
-    void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy);
+/*! \brief Uzzīmē trijstūri ar virsotnēm A,B,C
+    \param ax A x koordinate
+    \param ay A y koordinate
+    \param bx B x koordinate
+    \param by B y koordinate
+    \param cx C x koordinate
+    \param cy C y koordinate*/
+void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy);
 
-    //! Uzzīmē taisnstūri
-    void drawRectangle(float left, float bottom, float right, float top);
+//! Uzzīmē taisnstūri
+void drawRectangle(float left, float bottom, float right, float top);
 
-    /*! \brief Uzzīmē apli
-        \param x centra koordinate x
-        \param y centra koordinate y
-        \param r apļa radius
-        \param segments segmentu skaits ko izmantot apļa zīmēšanai*/
-    void drawCircle(float x, float y, float r, int segments = 64);
+/*! \brief Uzzīmē apli
+    \param x centra koordinate x
+    \param y centra koordinate y
+    \param r apļa radius
+    \param segments segmentu skaits ko izmantot apļa zīmēšanai*/
+void drawCircle(float x, float y, float r, int segments = 64);
 
-    /*! \brief Uzzīmē trijstūra kontūru
-        \param ax A x koordinate
-        \param ay A y koordinate
-        \param bx B x koordinate
-        \param by B y koordinate
-        \param cx C x koordinate
-        \param cy C y koordinate
-        \param w kontūras platums(resnums)*/
-    void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy,float w = 1);
-    //! Uzzīmē taisnstūra kontūru
-    void drawRectangleOutline(float left, float bottom, float right, float top,float w = 1);
-    /*! \brief Uzzīmē apļa kontūru
-        \param x centra koordinate x
-        \param y centra koordinate y
-        \param r apļa radius
-        \param segments segmentu skaits ko izmantot apļa zīmēšanai
-        \param w kontūras platums(resnums)*/
-    void drawCircleOutline(float x, float y, float r, int segments = 64, float w = 1);
+/*! \brief Uzzīmē trijstūra kontūru
+    \param ax A x koordinate
+    \param ay A y koordinate
+    \param bx B x koordinate
+    \param by B y koordinate
+    \param cx C x koordinate
+    \param cy C y koordinate
+    \param w kontūras platums(resnums)*/
+void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy,float w = 1);
+//! Uzzīmē taisnstūra kontūru
+void drawRectangleOutline(float left, float bottom, float right, float top,float w = 1);
+/*! \brief Uzzīmē apļa kontūru
+    \param x centra koordinate x
+    \param y centra koordinate y
+    \param r apļa radius
+    \param segments segmentu skaits ko izmantot apļa zīmēšanai
+    \param w kontūras platums(resnums)*/
+void drawCircleOutline(float x, float y, float r, int segments = 64, float w = 1);
 
-    /*! \brief Zīmē līniju
-        \param x1 līnijas sākuma pozīcija x
-        \param y1 līnijas sākuma pozīcija y
-        \param x2 līnijas gala pozīcija x
-        \param y2 līnijas gala pozīcija y
-        \param w līnijas platums (resnums)
-        \param caps līnijas galu noapaļošana (on/off)
-        \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-    void drawLine(float x1, float y1, float x2, float y2,float w = 1,bool caps = false);
-    /*! \brief Zīmē nepārtrauktu lauztu līniju
-        \param points līnijas virsotnes
-        \param w līnijas platums(resnums)
-        \param caps līnijas galu noapaļošana (on/off)
-        \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-    void drawLine(const std::vector<Vec2>& points,float w=1,bool caps=true);
+/*! \brief Zīmē līniju
+    \param x1 līnijas sākuma pozīcija x
+    \param y1 līnijas sākuma pozīcija y
+    \param x2 līnijas gala pozīcija x
+    \param y2 līnijas gala pozīcija y
+    \param w līnijas platums (resnums)
+    \param caps līnijas galu noapaļošana (on/off)
+    \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
+void drawLine(float x1, float y1, float x2, float y2,float w = 1,bool caps = false);
+/*! \brief Zīmē nepārtrauktu lauztu līniju
+    \param points līnijas virsotnes
+    \param w līnijas platums(resnums)
+    \param caps līnijas galu noapaļošana (on/off)
+    \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
+void drawLine(const std::vector<Vec2>& points,float w=1,bool caps=true);
 
-    /*! \brief Zīmē masīvus (Vertex Arrays)
-        \param vertices virsotnes
-        \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
-        \image html glDrawModes.gif "zīmēšanas režīmi" */
-    void drawArrays(const std::vector<Vec2>& vertices, unsigned mode = GL_TRIANGLES);
-    /*! Zīmē masīvus (Vertex Arrays)
-        \param vertices virsotnes
-        \param colors virsotņu krāsas
-        \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
-        \image html glDrawModes.gif "zīmēšanas režīmi" */
-    void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Color>& colors, unsigned mode = GL_TRIANGLES);
-    /*! \brief Zīmē masīvus (Vertex Arrays)
-        \param vertices virsotnes
-        \param uv virsotņu uv (tekstūras) koordinates
-        \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
-        \image html glDrawModes.gif "zīmēšanas režīmi" */
-    void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Vec2>& uv, unsigned mode = GL_TRIANGLES);
-    /*! \brief Zīmē masīvus (Vertex Arrays)
-        \param vertices virsotnes
-        \param uv virsotņu uv (tekstūras) koordinates
-        \param colors virsotņu krāsas
-        \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
-        \image html glDrawModes.gif "zīmēšanas režīmi" */
-    void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Vec2>& uv,const std::vector<Color>& colors, unsigned mode = GL_TRIANGLES);
+/*! \brief Zīmē masīvus (Vertex Arrays)
+    \param vertices virsotnes
+    \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
+    \image html glDrawModes.gif "zīmēšanas režīmi" */
+void drawArrays(const std::vector<Vec2>& vertices, unsigned mode = GL_TRIANGLES);
+/*! Zīmē masīvus (Vertex Arrays)
+    \param vertices virsotnes
+    \param colors virsotņu krāsas
+    \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
+    \image html glDrawModes.gif "zīmēšanas režīmi" */
+void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Color>& colors, unsigned mode = GL_TRIANGLES);
+/*! \brief Zīmē masīvus (Vertex Arrays)
+    \param vertices virsotnes
+    \param uv virsotņu uv (tekstūras) koordinates
+    \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
+    \image html glDrawModes.gif "zīmēšanas režīmi" */
+void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Vec2>& uv, unsigned mode = GL_TRIANGLES);
+/*! \brief Zīmē masīvus (Vertex Arrays)
+    \param vertices virsotnes
+    \param uv virsotņu uv (tekstūras) koordinates
+    \param colors virsotņu krāsas
+    \param mode zīmēšanas režīms. Pieejamie režīmi: GL_POINTS,GL_LINE_STRIP,GL_LINE_LOOP,GL_TRIANGLES,GL_TRIANGLE_STRIP,GL_TRIANGLE_FAN,GL_QUADS,GL_QUAD_STRIP,GL_POLYGON;
+    \image html glDrawModes.gif "zīmēšanas režīmi" */
+void drawArrays(const std::vector<Vec2>& vertices,const std::vector<Vec2>& uv,const std::vector<Color>& colors, unsigned mode = GL_TRIANGLES);
 
-    /*! \brief Ielādē tekstūru
-        \details Ielādē attēlu no faila un nosūta to video kartei kā tekstūru.
-        \param filename attēla faila nosaukums(ceļš uz failu).
-        \return ielādētās tekstūras id.
-        \warning return atgrieztais id nav opengl tekstūras id bet gan bibliotēkai specifisks!*/
-    int loadTexture(const std::string& filename);
+/*! \brief Ielādē tekstūru
+    \details Ielādē attēlu no faila un nosūta to video kartei kā tekstūru.
+    \param filename attēla faila nosaukums(ceļš uz failu).
+    \return ielādētās tekstūras id.
+    \warning return atgrieztais id nav opengl tekstūras id bet gan bibliotēkai specifisks!*/
+int loadTexture(const std::string& filename);
 
-    /*! \brief Izdzēš iepriekš ielādētu tekstūru
-        \param id kuru tekstūru izdzēst*/
-    void destroyTexture(int id);
-    /*! \brief Uzstāda zīmēšanai tekstūru.
-        \param id kuru tekstūru izmantot zīmēšanai, vai -1 lai neizmantotu nekādu tekstūru zīmēšanai*/
-    void setTexture(int id = -1);
+/*! \brief Izdzēš iepriekš ielādētu tekstūru
+    \param id kuru tekstūru izdzēst*/
+void destroyTexture(int id);
+/*! \brief Uzstāda zīmēšanai tekstūru.
+    \param id kuru tekstūru izmantot zīmēšanai, vai -1 lai neizmantotu nekādu tekstūru zīmēšanai*/
+void setTexture(int id = -1);
 
-    /*! \brief Uzzina vai kāds tastatūras taustiņš ir nospiests
-        \param key taustiņa nosaukums
-        \return true ja taustiņš ir nospiests, citādi false
-        \details ja taustiņa nosaukums netiek identificēts tiek veikta brīdinājuma izdruka konsolē (std::cerr)
-        \details \b Pieejamie \b taustiņu \b nosaukumi:
+/*! \brief Uzzina vai kāds tastatūras taustiņš ir nospiests
+    \param key taustiņa nosaukums
+    \return true ja taustiņš ir nospiests, citādi false
+    \details ja taustiņa nosaukums netiek identificēts tiek veikta brīdinājuma izdruka konsolē (std::cerr)
+    \details \b Pieejamie \b taustiņu \b nosaukumi:
 \li	"0"
 \li	"1"
 \li	"2"
@@ -462,20 +463,20 @@ namespace kjpsgl
 \li	"?"
 \li	"""
 \li	")"
-    */
-    bool getKey(const std::string& key);
+*/
+bool getKey(const std::string& key);
 
-    /*! \brief Uzzina vai peles poga ir nospiesta
-        \param button peles pogas identifikators (1 - kreisā, 2 - vidējā, 3 - labā)
-        \return true ja konkrētā peles poga ir nospiesta, citādi false */
-    bool getMouseButton(int button = 1);
-    /*! \brief Iegūst peles x pozīciju relatīvi loga apakšējajam kreisajam stūrim.
-        \return peles x pozīciju */
-    float getMouseX();
-    /*! \brief Iegūst peles y pozīciju relatīvi loga apakšējajam kreisajam stūrim.
-        \return peles y pozīciju */
-    float getMouseY();
-    /*! \brief Iegūst peles riteņa pagriezienu daudzumu kopš iepriekšējā update() izsaukšanas
-        \return peles riteņa pagriešanās daudzumu  */
-    int getMouseWheel();
+/*! \brief Uzzina vai peles poga ir nospiesta
+    \param button peles pogas identifikators (1 - kreisā, 2 - vidējā, 3 - labā)
+    \return true ja konkrētā peles poga ir nospiesta, citādi false */
+bool getMouseButton(int button = 1);
+/*! \brief Iegūst peles x pozīciju relatīvi loga apakšējajam kreisajam stūrim.
+    \return peles x pozīciju */
+float getMouseX();
+/*! \brief Iegūst peles y pozīciju relatīvi loga apakšējajam kreisajam stūrim.
+    \return peles y pozīciju */
+float getMouseY();
+/*! \brief Iegūst peles riteņa pagriezienu daudzumu kopš iepriekšējā update() izsaukšanas
+    \return peles riteņa pagriešanās daudzumu  */
+int getMouseWheel();
 }

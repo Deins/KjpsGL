@@ -15,7 +15,8 @@
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,("Function "+std::string(__FUNCTION__)+"() ERROR! ").c_str(),msg.c_str(),nullptr ); \
     assert(false); }while(0)
 
-namespace kjpsgl{
+namespace kjpsgl
+{
 using namespace std;
 //  variables:
 SDL_Window* window = nullptr;
@@ -142,43 +143,43 @@ void update()
             }
             break;
 
-            case(SDL_KEYDOWN) :
-			{
-				const unsigned code = event.key.keysym.scancode;
-				assert(code < keys.size());
-				keys[code] = 1;
-				break;
-			}
+        case(SDL_KEYDOWN) :
+        {
+            const unsigned code = event.key.keysym.scancode;
+            assert(code < keys.size());
+            keys[code] = 1;
+            break;
+        }
 
-			case(SDL_KEYUP) :
-			{
-				const unsigned code = event.key.keysym.scancode;
-				assert(code < keys.size());
-				keys[code] = 0;
-				break;
-			}
+        case(SDL_KEYUP) :
+        {
+            const unsigned code = event.key.keysym.scancode;
+            assert(code < keys.size());
+            keys[code] = 0;
+            break;
+        }
 
-			case(SDL_MOUSEBUTTONDOWN) :
-			{
-				assert(event.button.button < 16);
-				mouseButtons[event.button.button ] = 1;
-				break;
-			}
+        case(SDL_MOUSEBUTTONDOWN) :
+        {
+            assert(event.button.button < 16);
+            mouseButtons[event.button.button ] = 1;
+            break;
+        }
 
-			case(SDL_MOUSEBUTTONUP) :
-			{
-				assert(event.button.button < 16);
-				mouseButtons[event.button.button ] = 0;
-				break;
-			}
+        case(SDL_MOUSEBUTTONUP) :
+        {
+            assert(event.button.button < 16);
+            mouseButtons[event.button.button ] = 0;
+            break;
+        }
 
-			case(SDL_MOUSEMOTION) :
-				mousePos = Vec2(event.motion.x, event.motion.y);
-				break;
+        case(SDL_MOUSEMOTION) :
+            mousePos = Vec2(event.motion.x, event.motion.y);
+            break;
 
-			case(SDL_MOUSEWHEEL) :
-				mouseWheel = event.wheel.y;
-				break;
+        case(SDL_MOUSEWHEEL) :
+            mouseWheel = event.wheel.y;
+            break;
 
         default:
             //mInput.processEvent(event);
@@ -217,10 +218,10 @@ void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy)
 void drawRectangle(float left, float bottom, float right, float top)
 {
     drawArrays(
-        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
-        {Vec2(0,1),Vec2(1,1),Vec2(1,0),Vec2(0,0)},
-        {color,color,color,color},
-        GL_QUADS);
+    {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
+    {Vec2(0,1),Vec2(1,1),Vec2(1,0),Vec2(0,0)},
+    {color,color,color,color},
+    GL_QUADS);
 }
 
 void drawLine(float x1, float y1, float x2, float y2,float w, bool caps)
@@ -435,38 +436,48 @@ void setTexture(int id)
     }
 }
 
-    bool getKey(const string& name)
+bool getKey(const string& name)
+{
+    SDL_Scancode s = SDL_GetScancodeFromName(name.c_str());
+    if (s==SDL_SCANCODE_UNKNOWN)
     {
-        SDL_Scancode s = SDL_GetScancodeFromName(name.c_str());
-        if (s==SDL_SCANCODE_UNKNOWN) {
-                cerr<<"WARN: key '"<< name << "' unknown!\n";
-            return 0;
-        }
-        assert(s<keys.size());
-        return keys[s];
+        cerr<<"WARN: key '"<< name << "' unknown!\n";
+        return 0;
     }
+    assert(s<keys.size());
+    return keys[s];
+}
 
-    bool getMouseButton(int button)
-    {
-        if (button<0 || button>=int(mouseButtons.size())) fatalError("Wrong mouse button!");
-        return mouseButtons[button];
-    }
+bool getMouseButton(int button)
+{
+    if (button<0 || button>=int(mouseButtons.size())) fatalError("Wrong mouse button!");
+    return mouseButtons[button];
+}
 
-    float getMouseX(){return mousePos.x;}
-    float getMouseY(){return getWindowHeight()-mousePos.y;}
-    int getMouseWheel(){return mouseWheel;}
+float getMouseX()
+{
+    return mousePos.x;
+}
+float getMouseY()
+{
+    return getWindowHeight()-mousePos.y;
+}
+int getMouseWheel()
+{
+    return mouseWheel;
+}
 
-    int getWindowHeight()
-    {
-        int w,h;
-        SDL_GetWindowSize(window,&w,&h);
-        return h;
-    }
+int getWindowHeight()
+{
+    int w,h;
+    SDL_GetWindowSize(window,&w,&h);
+    return h;
+}
 
-    int getWindowWidth()
-    {
-        int w,h;
-        SDL_GetWindowSize(window,&w,&h);
-        return w;
-    }
+int getWindowWidth()
+{
+    int w,h;
+    SDL_GetWindowSize(window,&w,&h);
+    return w;
+}
 }
