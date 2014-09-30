@@ -1,0 +1,150 @@
+/*! 
+	\mainpage Kjps Graphics Library
+	KjpsGL ir ļoti vienkārša c++ bibliotēka kas piedāvā vienkāršas 2d grafikas zīmēšanas iespējas. 
+    Šī ir KjpsGL dokumentācija. Funkciju dokumentācija atrodama sadaļā nosaukumvietas/kjpsgl. 
+    
+	\section config Bibliotēkas kompilēšana un iekļaušana projektā
+	Pati bibliotēka sastāv tikai no 2 failiem kjpsGL.hpp un kjpsGL.cpp. Taču tā izmanto sevī 3 citas bibliotēkas kas arī ir jāiekļauj projektā
+	lai tā strādātu: SDL2, OpenGL 1.1 un lode png. 
+	SDL2 bibliotēka tiek izmantota lai nodrošinātu loga izveidi, ievadu (tastatūras, peles) u.c. darbībām
+	OpenGL tiek izmantots grafikas zīmēšanai
+	Lode PNG tiek izmantots lai nolasītu png attēla formātu.
+	
+	Es piedāvāju jau gatavu codeblocks projektu ar jau uzbūvētām bibliotēkām (priekš win GCC kompilatora). 
+	Citām vidēm/kompilatoriem/ build sistēmām konfigurēšana jāveic pašiem. 
+	SDL2 un OpenGL kompilēšanas/linkošanas informācija atrodama internetā. 
+	Lode png un pašu kjpsGL var vienkārši iekļaut projektā tā pat kā visus citus cpp un header failus.
+	
+	\section basics KjpsGL pamati
+	Visa bibliotēka ir kjpsgl nosaukumvietā, tādēļ lai izsauktu kādu bibliotēkas funkciju jāraksta tai priekšā kjpsgl:: piem
+	\code
+	kjpsgl::funkcijasNosaukums();
+	\endcode
+	vai jāizmanto 
+	\code
+	using namespace kjpsgl;
+	\endcode
+	Neaizmirsti arī, ka visos failos kuros izmanto kjpsGL iekļaut pie includes:
+	\code
+	#include "kjpsGL.hpp"
+	\endcode
+	
+	Bibliotēkai ir 2 galvēnās funkcijas kas ir jāizsauc lai bibliotēka pareizi darbotos.
+	1. kjpsgl::init()
+	Tā ir jāizsauc lai inicializētu bibliotēku un izveido zīmēšanas logu. 
+	To drīkst izsaukt tikai 1 reizi un tā ir jāizsauc pirms jebkuras citas bibliotēkas funkcijas. (parasti pašā programmas sākumā)
+	2. kjpsgl::update() 
+	Tā ir jāizsauc regulāri lai bibliotēka varētu nolasīt no operētājsistēmas notikušos notikumus. 
+	Šī funkcija tādējādi arī nolasa jauno ievadu no tastatūras, peles. 
+	(starp 2 update izsaukumiem visas ievad-iegūšanas funkcijas (piem \e kjpsgl::getMouseX(),\e kjpsgl::getKey()) atgriezīs to pašu rezultātu) 
+	Ja šī funkcija netiek ilgstoši izsaukta, operētājsistēma var parādīt erroru "Programm Not responding"! 
+	Šo funkciju parasti izsauc 1reiz katrā kadrā.
+	
+	3. Papildus tam vēl viena ļoti svarīga funkcija ir kjpsgl::display(). Šī funkcija ir atbildīga par zīmējuma attēlošanu. 
+	Vairāk detaļas lasīt pašas funkcijas dokumentācijā kjpsgl::display()
+	
+	Vienkāršs prorammas šablons kas neko varētu izskatīties šādi:
+	\code
+	#include "kjpsGL.hpp"
+
+	using namespace std;
+	using namespace kjpsgl;
+
+	int main()
+	{
+		init(1024,720); // inicializējam bibliotēku un atveram 1024x720px logu zīmēšanai
+		while (true) // Daram visu laiku, bibliotēka programmu apturēs ja logā nospiedīs 'X'
+		{
+			update(); // nolasam jauno ievadu (input)
+			// ...
+			// Zīmējam un daram viskautko šeit
+			// ...
+			display(); // attēlojam uzzīmēto uz ekrāna
+		}
+		return 0;
+	}
+	\endcode
+	
+	\subsection drawing Zīmēšanas komandas
+	Zīmēšanas komandas sākas ar draw, piem. kjpsgl::drawRectangle(), izņemot kjpsgl::clearScreen().
+	Visas zīmēšanas komandas tiek izpildītas tādā secībā kādā tās tiek izsauktas. 
+	Tas nozīmē, ka vīspirms jāzīmē fons, pēc tam priekšplāns un tamlīdzīgi.
+	Bibliotēka izmanto 32 bitu RGBA krāsu(pārsvarā funkcijas pieņem arī 24 bitu RGB). 
+	Tas nozīmē ka visas krāsas tiek atspoguļotas ar 4 skaitļiem, red, green, blue un alpha jeb caurspīdību.
+	Katra no šīm vērtībām ir no 0-255 ieskaitot. 
+	Tādēļ krāsu izvēlei var izmantot piem šo rīku: http://www.colorpicker.com/
+	Hex vai citi krāsu pieraksti, krāsu modeļi netiek atbalstīti.
+	
+	Zīmēšanas funkcijām specifiski parametri tiek padoti kā argumenti, 
+	taču krāsa vai tekstūra tiek uzstādīta pirms tam izmantojot funkcijas kjpsgl::setColor() un kjpsgl::setTexture(). 
+	Vienīgais izņēmums ir kjpsgl::clearScreen() kam krāsu padod kā argumentus.
+	Šīs funkcijas iestata globālo krāsošanas krāsu vai teksturēšanas tekstūru tādēļ visas komandas pēc šīm divām izmantos tieši to krāsu vai tekstūru.
+	piemērs: 
+	\code
+	// inicializējam bibliotēku utt.
+	// ..
+	setColor(255,0,0);
+	drawCircle(128,128,64); // zīmē sarkanu apli
+	setColor(0,255,0);
+	drawCircle(128,256,64); // zīmē zaļu apli
+	drawCircle(128,512,64); // arī šis būs zaļš, nekas nav mainījies
+	setColor(0,0,255);
+	drawCircleOutline(128,256,64,2); // zīmē pēdējam aplim 2px biezu zilu kontūru
+	// ..
+	// attēlojam visu ar kjpsgl::display()
+	\endcode
+	Pilnu programmas paraugu skatīt zemāk.
+	
+	\subsection texturing Tekstūru izmantošana (attēlu attēlošana)
+	Lai izmantotu tekstūras vispirms attēls ir jāielasa no faila jāatkodē un jāaizsūta video kartei (jo mēs izmantojam hardware acceleration ar opengl).
+	To visu var izdarīt ar vienu komandu int kjpsgl::loadTexture(const std::string& failaNosaukums). 
+	Šai funkcijai padod faila nosaukumu (relatīvi no programmas atrašanās vietas vai ar pilno ceļu) tā izdara visas nepieciešamās darbības un atgriež tekstūras identifikatoru (id).
+	Šis tekstūras id ir int tipa mainīgais un tiek izmantots visās citās ar teksturēšanu saistītajās funkcijās lai identificētu tekstūru.
+	Lai uzsāktu teksturēšanu ir jāizsauc kjpsgl::setTexture() padodot vēlamās tekstūras id. 
+	Lai atslēgtu teksturēšanu jāizsauc kjpsgl::setTexture(-1). 
+	Piemērs:
+	\code
+	// inicializējam bibliotēku utt.
+	const int t1 = loadTexture("a.png"); // ielādējam tekstūru "a.png"
+	const int t2 = loadTexture("b.png"); // ielādējam tekstūru "b.png"
+	// P.S. definējam abus iepriekšējos mainīgos kā const lai kompilators neļautu mums nejauši nomainīt šo vērtību uz citu tādējādi pazaudējot ielādēto tekstūru
+	// Kods darbotos arī bez const.
+	// ...
+	
+	// Ejam galvenajā zīmēšanas ciklā
+	// ...
+	setColor(255,0,255);
+	drawCircle(128,128,64); // zīmē sarkanu apli
+	setTexture(t1); // ieslēdzam teksturēšanu 
+	drawCircle(128,256,64); // zīmē sarkanu apli ar "a.png" tekstūru
+	setColor(128,128,128); 
+	drawCircle(128,256,64); // zīmē apli ar "a.png" tekstūru, normālā attēla krāsā
+	setTexture(-1); // izslēdz teksturēšanu
+	// ...
+	// attēlojam ar display() utt.
+
+	
+	// aizverot programmu izdzēšam tekstūras 
+	destroyTexture(t1);
+	destoryTexture(t2);
+	\endcode
+	\warning Teksturēšanu neatbalsta kjpsgl::drawLine() un visas kontūru zīmēšanas funkcijas.
+	\warning Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! 
+	\note tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id. 
+	
+	\subsection input Ievad komandas
+	Visas ievadfunkcijas atgriež pieprasīto stāvokli kāds tas bija pēdējajā kjpsgl::update()
+	
+	\subsection advancedDrawing Advancētās zīmēšanas komandas drawArrays()
+	Draw array uzzīmē atiecīgos masīvus (std::vektorus) izmantojot opengl vertex arrays. 
+	Visas draw...() funkcijas uzģenerē trijstūrus vai četrstūru mesh un tos zīmē ar šīm funkcijām.
+	Ar šīm funkcijām iespējama pilna kontrole par uv (tekstūras) kordinatēm un vertex colors.
+	Funkciju pielietojumu skatīt kjpsGL.cpp kādā no draw funkcijām.
+	
+	\section example Vienkārš piemērs
+	vienkārš piemērs kas demonstrē kā viss strādā kopā
+	\code 
+	// todo: pabeidz šo
+	#include 
+	\endcode
+ */

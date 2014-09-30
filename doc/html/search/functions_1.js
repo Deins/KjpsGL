@@ -6,7 +6,7 @@ var searchData=
   ['drawcircle',['drawCircle',['../namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45',1,'kjpsgl']]],
   ['drawcircleoutline',['drawCircleOutline',['../namespacekjpsgl.html#ab1346fcf4b6d6913205ebd090fc57e00',1,'kjpsgl']]],
   ['drawline',['drawLine',['../namespacekjpsgl.html#abd6c8f94cd8baa9618f264b51f630afc',1,'kjpsgl::drawLine(float x1, float y1, float x2, float y2, float w=1, bool caps=false)'],['../namespacekjpsgl.html#a983d44574f3a44d190e89c2eefb14c36',1,'kjpsgl::drawLine(const std::vector&lt; Vec2 &gt; &amp;points, float w=1, bool caps=true)']]],
-  ['drawrectangle',['drawRectangle',['../namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f',1,'kjpsgl']]],
+  ['drawrectangle',['drawRectangle',['../namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f',1,'kjpsgl::drawRectangle(float left, float bottom, float right, float top)'],['../namespacekjpsgl.html#ad5ddcbc7e1ff2929fc281cf1e41d5c4d',1,'kjpsgl::drawRectangle(float left, float bottom, float right, float top, float uvLeft, float uvBottom, float uvRight, float uvTop)']]],
   ['drawrectangleoutline',['drawRectangleOutline',['../namespacekjpsgl.html#a5ba8b09f2372b2db844405858b88442c',1,'kjpsgl']]],
   ['drawtriangle',['drawTriangle',['../namespacekjpsgl.html#a81027f8375717eee1bb54daff66815e9',1,'kjpsgl']]],
   ['drawtriangleoutline',['drawTriangleOutline',['../namespacekjpsgl.html#ac79362795889e400cf03257f2c73fa41',1,'kjpsgl']]]

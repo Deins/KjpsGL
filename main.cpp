@@ -12,7 +12,7 @@ int main()
     int frame=1;
     float t = 0;
     char b=122;
-    int tex = loadTexture("data/plane.png");
+    int tex = loadTexture("data/bricks.png");
     while (!getKey("Escape"))
     {
         b+= getMouseWheel()*8;
@@ -35,9 +35,9 @@ int main()
         vector<Color> c {Color(255,0,0),Color(0,255,0),Color(0,0,0,0)};
         drawArrays(v,c);
 
-        drawTriangleOutline(200,200,300,300,400,100,8);
+        drawTriangle(200,200,300,300,400,100);
         setColor(255,0,0);
-        drawRectangleOutline(500,0,700,88,2);
+        drawRectangle(500,0,700,88);
 
         setColor(0,0,0,255);
         drawCircle(200,100,32);
@@ -45,6 +45,13 @@ int main()
         drawCircleOutline(200,100,32,64,3);
 
         //setView(1024*.5,0,0,600*.5);
+
+        setTexture(tex);
+        drawTriangle(333,444,255,333,111,666);
+        drawCircle(800,333,60);
+        drawRectangle(400,400,500,500,0,0,.75,.5);
+setTexture(-1);
+
         display();
     }
     return 0;

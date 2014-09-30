@@ -7,6 +7,10 @@ var searchData=
   ['getmousewheel',['getMouseWheel',['../namespacekjpsgl.html#a7def8093754f51fbaa74940f891b704d',1,'kjpsgl']]],
   ['getmousex',['getMouseX',['../namespacekjpsgl.html#a0dc86004ab3bc1fbd3253b6b2a6b5875',1,'kjpsgl']]],
   ['getmousey',['getMouseY',['../namespacekjpsgl.html#a913ccde7c939fa1c34e4287dfe25907b',1,'kjpsgl']]],
+  ['getrandom',['getRandom',['../namespacekjpsgl.html#a7e49fef669fd888a77d8190e5dca8a2d',1,'kjpsgl']]],
+  ['gettextureheight',['getTextureHeight',['../namespacekjpsgl.html#a6659a14757ab54e352ebbdf87f9668da',1,'kjpsgl']]],
+  ['gettexturewidth',['getTextureWidth',['../namespacekjpsgl.html#ab43928ae5039831461b52f305e5d558a',1,'kjpsgl']]],
+  ['gettime',['getTime',['../namespacekjpsgl.html#aa3e72341a7876321003a4abb2bc880a6',1,'kjpsgl']]],
   ['getwindowheight',['getWindowHeight',['../namespacekjpsgl.html#a69ff6abcf9fb425092fff273fc611273',1,'kjpsgl']]],
   ['getwindowwidth',['getWindowWidth',['../namespacekjpsgl.html#aa5c5ea5a9674cfd977dd05c3cd57eef7',1,'kjpsgl']]]
 ];
