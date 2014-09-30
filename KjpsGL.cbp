@@ -37,8 +37,9 @@
 			<Add directory="SDL2/include" />
 		</Compiler>
 		<Linker>
-			<Add library="SDL2\lib\x86\SDL2.lib" />
-			<Add library="lib\OPENGL32.LIB" />
+			<Add library="SDL2\lib\SDL2.lib" />
+			<Add library="SDL2\lib\OPENGL32.LIB" />
+			<Add directory="SDL2/lib" />
 		</Linker>
 		<Unit filename="kjpsGL.cpp" />
 		<Unit filename="kjpsGL.hpp" />

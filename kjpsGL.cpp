@@ -25,7 +25,9 @@ Color color;
 unsigned long long lastFrame;
 float deltaTime;
 vector<GLuint> textures;
+vector<Vec2> textureSizes;
 int boundTexture = -1;
+uint64_t randomSeed;
 
 array<bool,256> keys;
 array<bool,16> mouseButtons;
@@ -108,6 +110,7 @@ void init(int width, int height, bool fullscreen,int msaa)
         setView(0,0,width,height);
 
         lastFrame = SDL_GetPerformanceCounter();
+        randomSeed = lastFrame;
     }
 }
 
@@ -211,17 +214,39 @@ void setColor(unsigned char red, unsigned char green, unsigned char blue, unsign
 
 void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy)
 {
-    if (boundTexture>=0) cerr << "WARN: " << __FUNCTION__ << " doesn't texture mapping (no uv cords)!\n";
-    drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},GL_TRIANGLES);
+    if (boundTexture>=0){
+        const Vec2 s = boundTexture>=0?Vec2(getTextureWidth(boundTexture),getTextureHeight(boundTexture)):Vec2(1,1);
+        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},
+                   {Vec2(ax/s.x,ay/s.y),Vec2(bx/s.x,by/s.y),Vec2(cx/s.x,cy/s.y)},GL_TRIANGLES);
+    }else
+    {
+        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},GL_TRIANGLES);
+    }
 }
 
 void drawRectangle(float left, float bottom, float right, float top)
 {
+    if (boundTexture>=0){
+        drawArrays(
+        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
+        {Vec2(0,1),Vec2(1,1),Vec2(1,0),Vec2(0,0)},
+        {color,color,color,color},
+        GL_QUADS);
+    }else{
+        drawArrays(
+        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
+        {color,color,color,color},
+        GL_QUADS);
+    }
+}
+
+void drawRectangle(float left, float bottom, float right, float top, float uvLeft,float uvBottom, float uvRight,float uvTop)
+{
     drawArrays(
-    {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
-    {Vec2(0,1),Vec2(1,1),Vec2(1,0),Vec2(0,0)},
-    {color,color,color,color},
-    GL_QUADS);
+        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
+        {Vec2(uvLeft,uvBottom),Vec2(uvRight,uvBottom),Vec2(uvRight,uvTop),Vec2(uvLeft,uvTop)},
+        {color,color,color,color},
+        GL_QUADS);
 }
 
 void drawLine(float x1, float y1, float x2, float y2,float w, bool caps)
@@ -348,15 +373,19 @@ void drawArrays(const vector<Vec2>& vertices,const vector<Vec2>& uv, unsigned mo
 
 void drawCircle(float x, float y, float r, int segments)
 {
-    if (boundTexture>=0) cerr << "WARN: " << __FUNCTION__ << " doesn't support texture mapping (no uv cords)!\n";
     vector<Vec2> verts;
-    verts.reserve(segments+1);
+    verts.reserve(segments);
     for (int i=0; i<segments; ++i)
     {
         float a = (i/float(segments)) *(2.0f*3.141592653589);
         verts.emplace_back(x+sin(a)*r,y+cos(a)*r);
     }
-    drawArrays(verts,GL_TRIANGLE_FAN);
+    if (boundTexture>=0){
+        vector<Vec2> uvs = verts;
+        const Vec2 s ={getTextureWidth(boundTexture),getTextureHeight(boundTexture)};
+        for (unsigned i=0; i<uvs.size(); ++i) uvs[i].x/=s.x, uvs[i].y/=s.y;
+        drawArrays(verts,uvs,GL_TRIANGLE_FAN);
+    }else drawArrays(verts,GL_TRIANGLE_FAN);
 }
 
 void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy,float w)
@@ -399,6 +428,7 @@ int loadTexture(const string& filename)
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     textures.push_back(tex);
+    textureSizes.push_back(Vec2(width,height));
     return textures.size()-1;
 }
 
@@ -409,6 +439,18 @@ void destroyTexture(int id)
     if (tex==0) fatalError("Can't destroy Texture twice!");
     glDeleteTextures(1, &tex);
     textures[id] = 0;
+}
+
+int getTextureHeight(int id)
+{
+    if (id<0 || id>=int(textures.size())) fatalError("Texture ID don't exist!");
+    return textureSizes[id].y;
+}
+
+int getTextureWidth(int id)
+{
+    if (id<0 || id>=int(textures.size())) fatalError("Texture ID don't exist!");
+    return textureSizes[id].x;
 }
 
 void setTexture(int id)
@@ -474,10 +516,30 @@ int getWindowHeight()
     return h;
 }
 
-int getWindowWidth()
-{
-    int w,h;
-    SDL_GetWindowSize(window,&w,&h);
-    return w;
-}
+    long long getRandom()
+    {
+        randomSeed ^= randomSeed >> 12; // a
+        randomSeed ^= randomSeed << 25; // b
+        randomSeed ^= randomSeed >> 27; // c
+        return randomSeed * 2685821657736338717LL;
+    }
+
+    // in range [a;b]
+    int getRandomInRange(int a, int b)
+    {
+        assert(a <= b);
+        uint64_t r = getRandom();
+        r %= b - a + 1;
+        return a + int(r);
+    }
+
+    void sleep(unsigned ms)
+    {
+        SDL_Delay(ms);
+    }
+
+    unsigned getTime()
+    {
+        return SDL_GetTicks();
+    }
 }

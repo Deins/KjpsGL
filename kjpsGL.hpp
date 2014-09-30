@@ -10,6 +10,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
+//! KjpsGl nosaukumvieta (namespace)
 namespace kjpsgl
 {
 //! 2D Vektors
@@ -65,7 +66,7 @@ void update();
 
 /*!
     \brief Attēlo uzzīmēto uz ekrāna.
-    \defails Bibliotēka veic tehniku sauktu par "Double-Buffering".
+    \details Bibliotēka veic tehniku sauktu par "Double-Buffering".
     Dobule-Buffering nosaka, ka ir 2 bufferi, 1 no tiem tiek attēlots kamēr otrā notiek zīmēšana.
     display() samaina šos buferus vietām tādējādi attēlojot līdz šim uzzīmēto.
     Double buffering ir vajadzīgs lai novērstu dažādus vizuālus artifaktus un neļautu attēlot pusuzzīmētu attēlu.
@@ -139,8 +140,26 @@ void setColor(unsigned char red, unsigned char green, unsigned char blue, unsign
     \param cy C y koordinate*/
 void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy);
 
-//! Uzzīmē taisnstūri
+/*! \brief Uzzīmē taisnstūri
+    \param left kreisās malas x kordinate
+    \param bottom apakšējās malas y kordinate
+    \param right labās malas x kordinate
+    \param top augšējās malas y kordinate
+*/
 void drawRectangle(float left, float bottom, float right, float top);
+
+/*! \brief Uzzīmē taisnstūri norādot tekstūras kordinates
+    \param left kreisās malas x kordinate
+    \param bottom apakšējās malas y kordinate
+    \param right labās malas x kordinate
+    \param top augšējās malas y kordinate
+
+    \param uvLeft kreisās malas tekstūras x kordinate [0;1]
+    \param uvBottom apakšējās malas tekstūras y kordinate [0;1]
+    \param uvRight labās malas tekstūras x kordinate [0;1]
+    \param uvTop augšējās malas tekstūras y kordinate [0;1]
+*/
+void drawRectangle(float left, float bottom, float right, float top, float uvLeft,float uvBottom, float uvRight,float uvTop);
 
 /*! \brief Uzzīmē apli
     \param x centra koordinate x
@@ -219,6 +238,17 @@ int loadTexture(const std::string& filename);
 /*! \brief Izdzēš iepriekš ielādētu tekstūru
     \param id kuru tekstūru izdzēst*/
 void destroyTexture(int id);
+
+/*! \brief Iegūst tekstūras \e id platumu (pikseļos)
+    \param id tekstūrai
+    \return tekstūras id platumu pixeļos*/
+int getTextureWidth(int id);
+
+/*! \brief Iegūst tekstūras \e id augstumu (pikseļos)
+    \param id tekstūrai
+    \return tekstūras id augstumu pixeļos*/
+int getTextureHeight(int id);
+
 /*! \brief Uzstāda zīmēšanai tekstūru.
     \param id kuru tekstūru izmantot zīmēšanai, vai -1 lai neizmantotu nekādu tekstūru zīmēšanai*/
 void setTexture(int id = -1);
@@ -479,4 +509,24 @@ float getMouseY();
 /*! \brief Iegūst peles riteņa pagriezienu daudzumu kopš iepriekšējā update() izsaukšanas
     \return peles riteņa pagriešanās daudzumu  */
 int getMouseWheel();
+
+/*! \brief Uzģenerē nejaušu long long skaitli
+    \return nejaušs skaitlis */
+long long getRandom();
+
+/*! \brief Uzģenerē nejauši izvēlētu veselu skaitli intervālā [a;b]
+    \param a galējā robeža
+    \param b galējā robeža
+    \return nejauši izvēlēts skaitlis intervālā [a;b] */
+int randomInRange(int a, int b);
+
+/*! \brief liek programmai gaidīt noteiktu skaitu milisekunžu ( 1s = 1000ms )
+    \param ms milisekundes cik programmai gaidīt */
+void sleep(unsigned ms);
+
+/*! \brief atgriež laiku milisekundēs cik pagājis kopš bibliotēkas inicializācijas
+    \return laiku milisekundēs cik pagājis kopš bibliotēkas inicializācijas
+    \warning laiks sasniegs 32 bitu integer robežu un sāks skaitīties no sākuma pēc ~49dienām
+    */
+unsigned getTime();
 }
