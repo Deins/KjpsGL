@@ -3,7 +3,7 @@
 using namespace std;
 using namespace kjpsgl;
 
-const float gravity = 50;
+float gravity;
 float x,y;
 float speedX;
 float speedY;
@@ -15,9 +15,10 @@ float box[boxCount][2];
 
 void reset()
 {
+    gravity = 3000;
     score = 0;
     gameOver = false;
-    speedX =  5;
+    speedX =  5000;
     speedY = 10;
     x=-1000; y=500;
     for (int i=0; i<boxCount; ++i){
@@ -29,13 +30,14 @@ void reset()
 
 int main()
 {
-    init(1024,720);
+    init(1024,720,false,0);
     setVsync(true);
-    reset();
+
     int kaspars = loadTexture("data/kaspars.png");
     int gameOverTex = loadTexture("data/go.png");
     int wallTex = loadTexture("data/codewall.png");
     int bckg = loadTexture("data/code_bckg.png");
+    reset();
 
     // galvenais cikls
     while (!getKey("Escape")) // kamēr nav nospiesta escape poga
@@ -47,22 +49,22 @@ int main()
 
         if (getKey("r")) reset();
         const float deltaT = getDeltaTime();
+        speedX = 250 + score*10;
         speedY -= gravity*deltaT;
-        y += speedY;
-        x += speedX;
-        speedX = 4 + score*.3f;
+        y += speedY*deltaT;
+        x += speedX*deltaT;
 
         if (!gameOver){
                 if (y<0) y=0, speedY=10;
                 else if (y>700) y=700, speedY=-1;
-                if (getAnyKey()) speedY=12;
+                if (getAnyKey()) speedY=800;
         }
 
         int p= int(x/500)+1;
         if (p<1) p = 1;
         else if (!gameOver) score = p;
         setTexture(wallTex);
-        for (int i=p-1; i<p+8; ++i){
+        for (int i=p-1; i<p+3; ++i){
             int cx = -x + i*500;
             if (cx<128+32 && cx>-48){
                 if (y<box[i][0] || y+64>box[i][1]) gameOver = true;
