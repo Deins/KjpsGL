@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.8"/>
-<title>KjpsGL: Kjps Graphics Library</title>
+<title>KjpsGL: C:/dev/C++/KjpsGL/mainpage.dox</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,9 +38,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Sākumlapa</span></a></li>
+      <li><a href="index.html"><span>Sākumlapa</span></a></li>
       <li><a href="namespaces.html"><span>Nosaukumvietas</span></a></li>
       <li><a href="annotated.html"><span>Klases</span></a></li>
+      <li><a href="examples.html"><span>Piemēri</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -76,25 +77,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Kjps Graphics Library </div>  </div>
+<div class="title">C:/dev/C++/KjpsGL/mainpage.dox</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>KjpsGL ir ļoti vienkārša c++ bibliotēka kas piedāvā vienkāršas 2d grafikas zīmēšanas iespējas. Šī ir KjpsGL dokumentācija. Funkciju dokumentācija atrodama sadaļā nosaukumvietas/kjpsgl.</p>
-<h1><a class="anchor" id="config"></a>
-Bibliotēkas kompilēšana un iekļaušana projektā</h1>
-<p>Pati bibliotēka sastāv tikai no 2 failiem <a class="el" href="kjps_g_l_8hpp_source.html">kjpsGL.hpp</a> un kjpsGL.cpp. Taču tā izmanto sevī 3 citas bibliotēkas kas arī ir jāiekļauj projektā lai tā strādātu: SDL2, OpenGL 1.1 un lode png. SDL2 bibliotēka tiek izmantota lai nodrošinātu loga izveidi, ievadu (tastatūras, peles) u.c. darbībām OpenGL tiek izmantots grafikas zīmēšanai Lode PNG tiek izmantots lai nolasītu png attēla formātu.</p>
-<p>Es piedāvāju jau gatavu codeblocks projektu ar jau uzbūvētām bibliotēkām (priekš win GCC kompilatora). Citām vidēm/kompilatoriem/ build sistēmām konfigurēšana jāveic pašiem. SDL2 un OpenGL kompilēšanas/linkošanas informācija atrodama internetā. Lode png un pašu kjpsGL var vienkārši iekļaut projektā tā pat kā visus citus cpp un header failus.</p>
-<h1><a class="anchor" id="basics"></a>
-KjpsGL pamati</h1>
-<p>Visa bibliotēka ir kjpsgl nosaukumvietā, tādēļ lai izsauktu kādu bibliotēkas funkciju jāraksta tai priekšā kjpsgl:: piem </p><div class="fragment"><div class="line">kjpsgl::funkcijasNosaukums();</div>
-</div><!-- fragment --><p> vai jāizmanto </p><div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
-</div><!-- fragment --><p> Neaizmirsti arī, ka visos failos kuros izmanto kjpsGL iekļaut pie includes: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
-</div><!-- fragment --><p>Bibliotēkai ir 2 galvēnās funkcijas kas ir jāizsauc lai bibliotēka pareizi darbotos.</p><ol type="1">
-<li><a class="el" href="namespacekjpsgl.html#ae6175b179d3f2ffc572b879a8b0665c8" title="Inicializē bibliotēku un izveido zīmēšanas logu. ">kjpsgl::init()</a> Tā ir jāizsauc lai inicializētu bibliotēku un izveidotu zīmēšanas logu. To drīkst izsaukt tikai 1 reizi un tā ir jāizsauc pirms jebkuras citas bibliotēkas funkcijas. (parasti pašā programmas sākumā)</li>
-<li><a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">kjpsgl::update()</a> Tā ir jāizsauc regulāri lai bibliotēka varētu nolasīt no operētājsistēmas notikušos notikumus. Šī funkcija tādējādi arī nolasa jauno ievadu no tastatūras, peles. (starp 2 update izsaukumiem visas ievad-iegūšanas funkcijas (piem <em><a class="el" href="namespacekjpsgl.html#a0dc86004ab3bc1fbd3253b6b2a6b5875" title="Iegūst peles x pozīciju relatīvi loga apakšējajam kreisajam stūrim. ">kjpsgl::getMouseX()</a></em>,<em><a class="el" href="namespacekjpsgl.html#a152fea540d0e62e4a40bbca6816fead7" title="Uzzina vai kāds tastatūras taustiņš ir nospiests. ">kjpsgl::getKey(const std::string&amp;)</a></em>) atgriezīs to pašu rezultātu) Ja šī funkcija netiek ilgstoši izsaukta, operētājsistēma var parādīt erroru "Programm Not responding"! Šo funkciju parasti izsauc 1reiz katrā kadrā.</li>
-<li>Papildus tam vēl viena ļoti svarīga funkcija ir <a class="el" href="namespacekjpsgl.html#a48aaec112b9ffc7109d9be7e7f46f998" title="Attēlo uzzīmēto uz ekrāna. ">kjpsgl::display()</a>. Šī funkcija ir atbildīga par zīmējuma attēlošanu. Vairāk detaļas lasīt pašas funkcijas dokumentācijā <a class="el" href="namespacekjpsgl.html#a48aaec112b9ffc7109d9be7e7f46f998" title="Attēlo uzzīmēto uz ekrāna. ">kjpsgl::display()</a></li>
-</ol>
-<p>Vienkāršs prorammas šablons varētu izskatīties šādi: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
@@ -112,11 +98,8 @@ KjpsGL pamati</h1>
 <div class="line">    }</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="drawing"></a>
-Zīmēšanas komandas</h2>
-<p>Zīmēšanas komandas sākas ar draw, piem. <a class="el" href="namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f" title="Uzzīmē taisnstūri. ">kjpsgl::drawRectangle()</a>, izņemot <a class="el" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a" title="Notīra zīmējamo bufferi vienā krāsā. ">kjpsgl::clearScreen()</a>. Visas zīmēšanas komandas tiek izpildītas tādā secībā kādā tās tiek izsauktas. Tas nozīmē, ka vīspirms jāzīmē fons, pēc tam priekšplāns un tamlīdzīgi. Bibliotēka izmanto 32 bitu RGBA krāsu(pārsvarā funkcijas pieņem arī 24 bitu RGB). Tas nozīmē ka visas krāsas tiek atspoguļotas ar 4 skaitļiem, red, green, blue un alpha jeb caurspīdību. Katra no šīm vērtībām ir no 0-255 ieskaitot. Tādēļ krāsu izvēlei var izmantot piem šo rīku: <a href="http://www.colorpicker.com/">http://www.colorpicker.com/</a> Hex vai citi krāsu pieraksti, krāsu modeļi netiek atbalstīti.</p>
-<p>Zīmēšanas funkcijām specifiski parametri tiek padoti kā argumenti, taču krāsa vai tekstūra tiek uzstādīta pirms tam izmantojot funkcijas <a class="el" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a" title="Uzstāda zīmēšanas krāsu. ">kjpsgl::setColor()</a> un <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture()</a>. Vienīgais izņēmums ir <a class="el" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a" title="Notīra zīmējamo bufferi vienā krāsā. ">kjpsgl::clearScreen()</a> kam krāsu padod kā argumentus. Šīs funkcijas iestata globālo krāsošanas krāsu vai teksturēšanas tekstūru tādēļ visas komandas pēc šīm divām izmantos tieši to krāsu vai tekstūru.</p>
-<p>Piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
+</div><!-- fragment --><p>Zīmēšanas komandas sākas ar draw, piem. <a class="el" href="namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f" title="Uzzīmē taisnstūri. ">kjpsgl::drawRectangle()</a>, izņemot <a class="el" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a" title="Notīra zīmējamo bufferi vienā krāsā. ">kjpsgl::clearScreen()</a>. Visas zīmēšanas komandas tiek izpildītas tādā secībā kādā tās tiek izsauktas. Tas nozīmē, ka vīspirms jāzīmē fons, pēc tam priekšplāns un tamlīdzīgi. Bibliotēka izmanto 32 bitu RGBA krāsu(pārsvarā funkcijas pieņem arī 24 bitu RGB). Tas nozīmē ka visas krāsas tiek atspoguļotas ar 4 skaitļiem, red, green, blue un alpha jeb caurspīdību. Katra no šīm vērtībām ir no 0-255 ieskaitot. Tādēļ krāsu izvēlei var izmantot piem šo rīku: <a href="http://www.colorpicker.com/">http://www.colorpicker.com/</a> Hex vai citi krāsu pieraksti, krāsu modeļi netiek atbalstīti.</p>
+<p>Zīmēšanas funkcijām specifiski parametri tiek padoti kā argumenti, taču krāsa vai tekstūra tiek uzstādīta pirms tam izmantojot funkcijas <a class="el" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a" title="Uzstāda zīmēšanas krāsu. ">kjpsgl::setColor()</a> un <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture()</a>. Vienīgais izņēmums ir <a class="el" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a" title="Notīra zīmējamo bufferi vienā krāsā. ">kjpsgl::clearScreen()</a> kam krāsu padod kā argumentus. Šīs funkcijas iestata globālo krāsošanas krāsu vai teksturēšanas tekstūru tādēļ visas komandas pēc šīm divām izmantos tieši to krāsu vai tekstūru. piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
@@ -141,8 +124,7 @@ Zīmēšanas komandas</h2>
 <div class="line">        <a class="code" href="namespacekjpsgl.html#a238757a801479cedbad23652557dbcbd">sleep</a>(100); <span class="comment">// guļam lai nenoslogotu nevajadzīgi cpu</span></div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="texturing"></a>
-Tekstūru izmantošana (attēlu attēlošana)</h2>
+</div><!-- fragment --><p> Pilnu programmas paraugu skatīt zemāk.</p>
 <p>Lai izmantotu tekstūras vispirms attēls ir jāielasa no faila jāatkodē un jāaizsūta video kartei (jo mēs izmantojam hardware acceleration ar opengl). To visu var izdarīt ar vienu komandu int <a class="el" href="namespacekjpsgl.html#a8de7976019f62c33b60a9cfa8eff16be" title="Ielādē tekstūru. ">kjpsgl::loadTexture(const std::string&amp; failaNosaukums)</a>. Šai funkcijai padod faila nosaukumu (relatīvi no programmas atrašanās vietas vai ar pilno ceļu) tā izdara visas nepieciešamās darbības un atgriež tekstūras identifikatoru (id). Šis tekstūras id ir int tipa mainīgais un tiek izmantots visās citās ar teksturēšanu saistītajās funkcijās lai identificētu tekstūru. Lai uzsāktu teksturēšanu ir jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture()</a> padodot vēlamās tekstūras id. Lai atslēgtu teksturēšanu jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture</a>(-1). Piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
@@ -178,10 +160,7 @@ Tekstūru izmantošana (attēlu attēlošana)</h2>
 <dd>
 Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! </dd></dl>
 <dl class="section note"><dt>Piezīme</dt><dd>tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id.</dd></dl>
-<h2><a class="anchor" id="input"></a>
-Ievad komandas un palīgkomandas</h2>
-<p>Visas ievadfunkcijas atgriež pieprasīto stāvokli kāds tas bija pēdējajā <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">kjpsgl::update()</a></p>
-<p>Piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
+<p>Visas ievadfunkcijas atgriež pieprasīto stāvokli kāds tas bija pēdējajā <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">kjpsgl::update()</a> piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
@@ -191,7 +170,7 @@ Ievad komandas un palīgkomandas</h2>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#ae6175b179d3f2ffc572b879a8b0665c8">init</a>(1024,720);</div>
 <div class="line">    <span class="keywordtype">int</span> color[] = {<a class="code" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a>(111,255),<a class="code" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a>(111,255),<a class="code" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a>(111,255)};</div>
 <div class="line">    <span class="keywordtype">int</span> segments = 3;</div>
-<div class="line">    <span class="keywordtype">int</span> x,y,r=64;</div>
+<div class="line">    <span class="keywordtype">int</span> x,<a class="code" href="namespacekjpsgl.html#ae2a1e89822afb882392219718a409bb9">y</a>,r=64;</div>
 <div class="line">    <span class="keywordtype">bool</span> rightDown;</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// galvenais cikls</span></div>
@@ -222,20 +201,13 @@ Ievad komandas un palīgkomandas</h2>
 <div class="line">        <a class="code" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a">setColor</a>(255-color[0],255-color[1], 255-color[2]);</div>
 <div class="line">        <a class="code" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a>(x,y,r,segments);</div>
 <div class="line">        <a class="code" href="namespacekjpsgl.html#a48aaec112b9ffc7109d9be7e7f46f998">display</a>();</div>
-<div class="line"></div>
-<div class="line">        <span class="comment">// manuāli panākam 24 kadrus sekundē</span></div>
-<div class="line">        <span class="keyword">const</span> <span class="keywordtype">int</span> fps = 24;</div>
-<div class="line">        <span class="keywordtype">int</span> wait = int( ((1.0/fps) - <a class="code" href="namespacekjpsgl.html#a2e3652632f719b0f989f50dc111fa231">getDeltaTime</a>())*1000);</div>
-<div class="line">        <span class="keywordflow">if</span> (wait&gt;0) <a class="code" href="namespacekjpsgl.html#a238757a801479cedbad23652557dbcbd">sleep</a>(<span class="keywordtype">unsigned</span>(wait));</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="advancedDrawing"></a>
-Advancētās zīmēšanas komandas drawArrays()</h2>
-<p>Draw array uzzīmē atiecīgos masīvus (std::vektorus) izmantojot opengl vertex arrays. Visas draw...() funkcijas uzģenerē trijstūrus vai četrstūru mesh un tos zīmē ar šīm funkcijām. Ar šīm funkcijām iespējama pilna kontrole par uv (tekstūras) kordinatēm un vertex colors. Funkciju pielietojumu skatīt kjpsGL.cpp kādā no draw funkcijām. </p>
-</div></div><!-- contents -->
+</div><!-- fragment --><p>Draw array uzzīmē atiecīgos masīvus (std::vektorus) izmantojot opengl vertex arrays. Visas draw...() funkcijas uzģenerē trijstūrus vai četrstūru mesh un tos zīmē ar šīm funkcijām. Ar šīm funkcijām iespējama pilna kontrole par uv (tekstūras) kordinatēm un vertex colors. Funkciju pielietojumu skatīt kjpsGL.cpp kādā no draw funkcijām.</p>
+<div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Ģenerēts Tr Okt 1 2014 16:10:54 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
+Ģenerēts Tr Okt 1 2014 15:55:08 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

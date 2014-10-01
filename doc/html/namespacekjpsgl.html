@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Klases</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkjpsgl_1_1_color.html">Color</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RGBA krāsa.  <a href="structkjpsgl_1_1_color.html#details">vairāk...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bitu RGBA krāsa  <a href="structkjpsgl_1_1_color.html#details">vairāk...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2D Vektors  <a href="structkjpsgl_1_1_vec2.html#details">vairāk...</a><br /></td></tr>
@@ -113,7 +113,7 @@ Funkcijas</h2></td></tr>
 <tr class="memdesc:a48aaec112b9ffc7109d9be7e7f46f998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attēlo uzzīmēto uz ekrāna.  <a href="#a48aaec112b9ffc7109d9be7e7f46f998">vairāk...</a><br /></td></tr>
 <tr class="separator:a48aaec112b9ffc7109d9be7e7f46f998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20758a6f9833df4588703b25300ecb8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a">clearScreen</a> (unsigned char red=0, unsigned char green=0, unsigned char blue=0)</td></tr>
-<tr class="memdesc:a20758a6f9833df4588703b25300ecb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notīra zīmējamo bufferi.  <a href="#a20758a6f9833df4588703b25300ecb8a">vairāk...</a><br /></td></tr>
+<tr class="memdesc:a20758a6f9833df4588703b25300ecb8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notīra zīmējamo bufferi vienā krāsā.  <a href="#a20758a6f9833df4588703b25300ecb8a">vairāk...</a><br /></td></tr>
 <tr class="separator:a20758a6f9833df4588703b25300ecb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67452f65305694fe9044216a1f1f610a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a">setColor</a> (unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha=255)</td></tr>
 <tr class="memdesc:a67452f65305694fe9044216a1f1f610a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda zīmēšanas krāsu.  <a href="#a67452f65305694fe9044216a1f1f610a">vairāk...</a><br /></td></tr>
@@ -164,6 +164,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memitem:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830">setTexture</a> (int id=-1)</td></tr>
 <tr class="memdesc:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda zīmēšanai tekstūru.  <a href="#aa7c11a013c5c5ff81d49ada6ca9a6830">vairāk...</a><br /></td></tr>
 <tr class="separator:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a140f7b4c3cff4b680b1f93dcae3616ed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a140f7b4c3cff4b680b1f93dcae3616ed">getAnyKey</a> ()</td></tr>
+<tr class="memdesc:a140f7b4c3cff4b680b1f93dcae3616ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">noskaidro vai kāda tastatūras poga tika nospiesta pēdējajā <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">update()</a>  <a href="#a140f7b4c3cff4b680b1f93dcae3616ed">vairāk...</a><br /></td></tr>
+<tr class="separator:a140f7b4c3cff4b680b1f93dcae3616ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad837b823002784acd162219b00b51b3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ad837b823002784acd162219b00b51b3c">getMouseButton</a> (int button=1)</td></tr>
 <tr class="memdesc:ad837b823002784acd162219b00b51b3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzina vai peles poga ir nospiesta.  <a href="#ad837b823002784acd162219b00b51b3c">vairāk...</a><br /></td></tr>
 <tr class="separator:ad837b823002784acd162219b00b51b3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,9 +181,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="separator:a7def8093754f51fbaa74940f891b704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69ff6abcf9fb425092fff273fc611273"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a69ff6abcf9fb425092fff273fc611273">getWindowHeight</a> ()</td></tr>
 <tr class="separator:a69ff6abcf9fb425092fff273fc611273"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e49fef669fd888a77d8190e5dca8a2d"><td class="memItemLeft" align="right" valign="top">long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a7e49fef669fd888a77d8190e5dca8a2d">getRandom</a> ()</td></tr>
-<tr class="memdesc:a7e49fef669fd888a77d8190e5dca8a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzģenerē nejaušu long long skaitli.  <a href="#a7e49fef669fd888a77d8190e5dca8a2d">vairāk...</a><br /></td></tr>
-<tr class="separator:a7e49fef669fd888a77d8190e5dca8a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a> (int a, int b)</td></tr>
+<tr class="memdesc:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzģenerē nejauši izvēlētu veselu skaitli intervālā [a;b].  <a href="#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">vairāk...</a><br /></td></tr>
+<tr class="separator:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a238757a801479cedbad23652557dbcbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a238757a801479cedbad23652557dbcbd">sleep</a> (unsigned ms)</td></tr>
 <tr class="memdesc:a238757a801479cedbad23652557dbcbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">liek programmai gaidīt noteiktu skaitu milisekunžu ( 1s = 1000ms )  <a href="#a238757a801479cedbad23652557dbcbd">vairāk...</a><br /></td></tr>
 <tr class="separator:a238757a801479cedbad23652557dbcbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,9 +219,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memitem:a152fea540d0e62e4a40bbca6816fead7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a152fea540d0e62e4a40bbca6816fead7">getKey</a> (const std::string &amp;key)</td></tr>
 <tr class="memdesc:a152fea540d0e62e4a40bbca6816fead7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzina vai kāds tastatūras taustiņš ir nospiests.  <a href="#a152fea540d0e62e4a40bbca6816fead7">vairāk...</a><br /></td></tr>
 <tr class="separator:a152fea540d0e62e4a40bbca6816fead7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a> (int a, int b)</td></tr>
-<tr class="memdesc:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzģenerē nejauši izvēlētu veselu skaitli intervālā [a;b].  <a href="#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">vairāk...</a><br /></td></tr>
-<tr class="separator:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e49fef669fd888a77d8190e5dca8a2d"><td class="memItemLeft" align="right" valign="top">long long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a7e49fef669fd888a77d8190e5dca8a2d">getRandom</a> ()</td></tr>
+<tr class="memdesc:a7e49fef669fd888a77d8190e5dca8a2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzģenerē nejaušu long long skaitli.  <a href="#a7e49fef669fd888a77d8190e5dca8a2d">vairāk...</a><br /></td></tr>
+<tr class="separator:a7e49fef669fd888a77d8190e5dca8a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detalizēts apraksts</h2>
 <div class="textblock"><p>KjpsGl nosaukumvieta (namespace) </p>
@@ -254,7 +257,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
       </table>
 </div><div class="memdoc">
 
-<p>Notīra zīmējamo bufferi. </p>
+<p>Notīra zīmējamo bufferi vienā krāsā. </p>
+<dl class="section note"><dt>Piezīme</dt><dd>Šī funkcija ignorē setTexture un setColor vērtības. Ja vajadzīga tāda funkcionalitāte izmantojiet drawRect() kas zīmē pa visu ekrānu. </dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">red</td><td>notīrāmas krāsas red vērtība [0,255] </td></tr>
@@ -964,6 +968,24 @@ zīmēšanas režīmi</div></div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a140f7b4c3cff4b680b1f93dcae3616ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kjpsgl::getAnyKey </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>noskaidro vai kāda tastatūras poga tika nospiesta pēdējajā <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">update()</a> </p>
+<dl class="section return"><dt>Atgriež</dt><dd>true ja ir nospiesta kaut viena tastatūras poga </dd></dl>
 
 </div>
 </div>
@@ -1811,7 +1833,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Ģenerēts Tr Okt 1 2014 01:27:46 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
+Ģenerēts Tr Okt 1 2014 16:10:54 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

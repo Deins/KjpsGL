@@ -1,6 +1,7 @@
 var searchData=
 [
   ['g',['g',['../structkjpsgl_1_1_color.html#a063cabdfa1a949459842f3d1840a6952',1,'kjpsgl::Color']]],
+  ['getanykey',['getAnyKey',['../namespacekjpsgl.html#a140f7b4c3cff4b680b1f93dcae3616ed',1,'kjpsgl']]],
   ['getdeltatime',['getDeltaTime',['../namespacekjpsgl.html#a2e3652632f719b0f989f50dc111fa231',1,'kjpsgl']]],
   ['getkey',['getKey',['../namespacekjpsgl.html#a152fea540d0e62e4a40bbca6816fead7',1,'kjpsgl']]],
   ['getmousebutton',['getMouseButton',['../namespacekjpsgl.html#ad837b823002784acd162219b00b51b3c',1,'kjpsgl']]],
