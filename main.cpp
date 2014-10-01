@@ -1,58 +1,84 @@
 #include "kjpsGL.hpp"
-#include <cmath>
 
 using namespace std;
 using namespace kjpsgl;
 
+const float gravity = 50;
+float x,y;
+float speedX;
+float speedY;
+int score;
+bool gameOver;
+
+const int boxCount = 100;
+float box[boxCount][2];
+
+void reset()
+{
+    score = 0;
+    gameOver = false;
+    speedX = 3;
+    speedY = 10;
+    x=-1000; y=500;
+    for (int i=0; i<boxCount; ++i){
+        float w = randomInRange(150,400);
+        box[i][0]= randomInRange(0,720-w);
+        box[i][1]= box[i][0] + w;
+    }
+}
+
 int main()
 {
-    init(1024,600,false,8);
+    init(1024,720);
     setVsync(true);
+    reset();
+    int kaspars = loadTexture("data/kaspars.png");
+    int gameOverTex = loadTexture("data/go.png");
 
-    int frame=1;
-    float t = 0;
-    char b=122;
-    int tex = loadTexture("data/bricks.png");
-    while (!getKey("Escape"))
+    // galvenais cikls
+    while (!getKey("Escape")) // kamēr nav nospiesta escape poga
     {
-        b+= getMouseWheel()*8;
-        t+=getDeltaTime();
-        ++frame;
         update();
-        clearScreen(b,b,b);
-        setWindowTitle("FPS: "+toString(1/getDeltaTime()));
+        clearScreen(32,96,200);
+        if (getKey("r")) reset();
+        const float deltaT = getDeltaTime();
+        speedY -= gravity*deltaT;
+        y += speedY;
+        x += speedX;
 
+        if (!gameOver){
+                if (y<0) y=0, speedY=10;
+                else if (y>700) y=700, speedY=-1;
+                if (getAnyKey()) speedY=12;
+        }else{
+                if (speedX>0) speedX-=deltaT;
+        }
+
+        int p= int(x/500)+1;
+        if (p<1) p = 1;
+        else if (!gameOver) score = p;
+        for (int i=p-1; i<p+8; ++i){
+            int cx = -x + i*500;
+            if (cx<128+32 && cx>-48){
+                if (y<box[i][0] || y+64>box[i][1]) gameOver = true;
+            }
+            drawRectangle(cx,0,cx+128,box[i][0]);
+            drawRectangle(cx,box[i][1],cx+128,720);
+        }
+
+        if (gameOver) setColor(255,0,0);
+        setTexture(kaspars);
+        drawRectangle(64-4,y-4,64+64+8,y+64+8);
         setColor(255,255,255);
-        setTexture(tex);
-        drawRectangle(256,256,512,512);
+
+        if (gameOver){
+            setTexture(gameOverTex);
+            int w =296; int h= 48;
+            //drawRectangle()
+        }
         setTexture(-1);
 
-        setColor(0,0,255);
-        if (getMouseButton(1)) setColor(0,255,0);
-        drawLine(0,0,0+getMouseX(),0+getMouseY(),3);
-
-        vector<Vec2> v {Vec2(100,100), Vec2(200,100), Vec2(200,200)};
-        vector<Color> c {Color(255,0,0),Color(0,255,0),Color(0,0,0,0)};
-        drawArrays(v,c);
-
-        drawTriangle(200,200,300,300,400,100);
-        setColor(255,0,0);
-        drawRectangle(500,0,700,88);
-
-        setColor(0,0,0,255);
-        drawCircle(200,100,32);
-        setColor(255,255,255);
-        drawCircleOutline(200,100,32,64,3);
-
-        //setView(1024*.5,0,0,600*.5);
-
-        setTexture(tex);
-        drawTriangle(333,444,255,333,111,666);
-        drawCircle(800,333,60);
-        drawRectangle(400,400,500,500,0,0,.75,.5);
-setTexture(-1);
-
         display();
+        setWindowTitle("Score: "+toString(score));
     }
-    return 0;
 }
