@@ -72,7 +72,6 @@ void init(int width, int height, bool fullscreen,int msaa)
 
         // Open Window
         unsigned flags = SDL_WINDOW_OPENGL;
-        bool fullscreen = false;
         bool nativeResolution = width<=0 || height<=0;
         if (fullscreen)
         {
