@@ -49,3 +49,4 @@ SDL2/VisualC/tests/testatomic/testatomic_VS2012.vcxproj
 *.png
 *.m4
 *.o
+*.jpg
