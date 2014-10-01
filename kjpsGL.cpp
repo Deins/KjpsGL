@@ -30,6 +30,7 @@ int boundTexture = -1;
 uint64_t randomSeed;
 
 array<bool,256> keys;
+bool anyKey = false;
 array<bool,16> mouseButtons;
 Vec2 mousePos;
 int mouseWheel;
@@ -125,6 +126,7 @@ void update()
     }
     mouseWheel = 0;
     SDL_Event event;
+    anyKey = false;
     /* Grab all the events off the queue. */
     while (SDL_PollEvent(&event))
     {
@@ -151,6 +153,7 @@ void update()
             const unsigned code = event.key.keysym.scancode;
             assert(code < keys.size());
             keys[code] = 1;
+            anyKey = true;
             break;
         }
 
@@ -220,7 +223,7 @@ void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy)
                    {Vec2(ax/s.x,ay/s.y),Vec2(bx/s.x,by/s.y),Vec2(cx/s.x,cy/s.y)},GL_TRIANGLES);
     }else
     {
-        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},GL_TRIANGLES);
+        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},vector<Color>(6,color),GL_TRIANGLES);
     }
 }
 
@@ -382,9 +385,9 @@ void drawCircle(float x, float y, float r, int segments)
     }
     if (boundTexture>=0){
         vector<Vec2> uvs = verts;
-        const Vec2 s ={getTextureWidth(boundTexture),getTextureHeight(boundTexture)};
+        const Vec2 s (getTextureWidth(boundTexture),getTextureHeight(boundTexture));
         for (unsigned i=0; i<uvs.size(); ++i) uvs[i].x/=s.x, uvs[i].y/=s.y;
-        drawArrays(verts,uvs,GL_TRIANGLE_FAN);
+        drawArrays(verts,uvs,vector<Color>(verts.size(),color),GL_TRIANGLE_FAN);
     }else drawArrays(verts,GL_TRIANGLE_FAN);
 }
 
@@ -490,6 +493,11 @@ bool getKey(const string& name)
     return keys[s];
 }
 
+bool getAnyKey()
+{
+    return anyKey;
+}
+
 bool getMouseButton(int button)
 {
     if (button<0 || button>=int(mouseButtons.size())) fatalError("Wrong mouse button!");
@@ -516,7 +524,7 @@ int getWindowHeight()
     return h;
 }
 
-    long long getRandom()
+    long long random()
     {
         randomSeed ^= randomSeed >> 12; // a
         randomSeed ^= randomSeed << 25; // b
@@ -525,10 +533,10 @@ int getWindowHeight()
     }
 
     // in range [a;b]
-    int getRandomInRange(int a, int b)
+    int randomInRange(int a, int b)
     {
         assert(a <= b);
-        uint64_t r = getRandom();
+        uint64_t r = random();
         r %= b - a + 1;
         return a + int(r);
     }

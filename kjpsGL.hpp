@@ -13,7 +13,7 @@
 //! KjpsGl nosaukumvieta (namespace)
 namespace kjpsgl
 {
-//! 2D Vektors
+//! \brief 2D Vektors
 struct Vec2
 {
     float x; //!< x komponente
@@ -23,7 +23,7 @@ struct Vec2
     Vec2 normalized(); //!< \return normalizēts vektors (virziena vektors ar garumu 1)
 };
 
-//! RGBA krāsa
+//! \brief 32 bitu RGBA krāsa
 struct Color
 {
     unsigned char r;//!< krāsas sarkanā komponente
@@ -111,7 +111,9 @@ float getDeltaTime();
 */
 void setVsync(bool enabled);
 
-/*! \brief Notīra zīmējamo bufferi.
+/*! \brief Notīra zīmējamo bufferi vienā krāsā.
+    \note Šī funkcija ignorē setTexture un setColor vērtības.
+    Ja vajadzīga tāda funkcionalitāte izmantojiet drawRect() kas zīmē pa visu ekrānu.
     \param red notīrāmas krāsas red vērtība [0,255]
     \param green notīrāmas krāsas green vērtība [0,255]
     \param blue notīrāmas krāsas blue vērtība [0,255]*/
@@ -495,6 +497,10 @@ void setTexture(int id = -1);
 \li	")"
 */
 bool getKey(const std::string& key);
+
+/*! \brief noskaidro vai kāda tastatūras poga tika nospiesta pēdējajā update()
+    \return true ja ir nospiesta kaut viena tastatūras poga */
+bool getAnyKey();
 
 /*! \brief Uzzina vai peles poga ir nospiesta
     \param button peles pogas identifikators (1 - kreisā, 2 - vidējā, 3 - labā)
