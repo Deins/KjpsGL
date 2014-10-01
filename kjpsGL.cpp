@@ -112,6 +112,7 @@ void init(int width, int height, bool fullscreen,int msaa)
 
         lastFrame = SDL_GetPerformanceCounter();
         randomSeed = lastFrame;
+        setColor(255,255,255); // set default color to white
     }
 }
 
