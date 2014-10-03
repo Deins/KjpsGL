@@ -46,6 +46,10 @@ Vec2 Vec2::normalized()
     float m=magnitude();
     return Vec2(x/m,y/m);
 }
+float Vec2::dot(const Vec2& a, const Vec2& b){
+    return (a.x*b.x)+(a.y*b.y);
+}
+
 Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a):r(r), g(g), b(b), a(a) {}
 
 //  Function implementations:
@@ -252,43 +256,96 @@ void drawRectangle(float left, float bottom, float right, float top, float uvLef
         GL_QUADS);
 }
 
-void drawLine(float x1, float y1, float x2, float y2,float w, bool caps)
+void drawLine(float x1, float y1, float x2, float y2,float w, bool)
 {
-    drawLine({Vec2(x1,y1), Vec2(x2,y2)},w,caps);
+    drawLine({Vec2(x1,y1), Vec2(x2,y2)},w);
 }
 
-void drawLine(const vector<Vec2>& points,float w,bool caps)
+void drawLine(const vector<Vec2>& points,float w)
 {
     if (boundTexture>=0) cerr << "WARN: " << __FUNCTION__ << " doesn't support texture mapping (no uv cords)!\n";
     w*=.5f;
     vector<Vec2> verts;
-    verts.reserve(points.size()*4-4);
-    for (int i=0; i<int(points.size()-1); ++i)
-    {
-        float x1 = points[i].x, x2 = points[i+1].x,  y1=points[i].y, y2 = points[i+1].y;
-        Vec2 dir = points[i];
-        dir.x -= points[i+1].x;
-        dir.y -= points[i+1].y;
-        dir = dir.normalized();
-        dir.x *= w;
-        dir.y *= w;
+    verts.reserve(points.size()*4);
 
+    verts.resize(2); // first two reserved for later
+    for (int i=1; i<points.size(); ++i){
+        Vec2 dir = Vec2(points[i].x-points[i-1].x,points[i].y-points[i-1].y).normalized();
+        // first normals instead of vertices
         swap(dir.x,dir.y);
-        dir.x*=-1;
+        verts.emplace_back(-dir.x,dir.y);
+        verts.emplace_back(dir.x,-dir.y);
+    }
+    // first two values
+    verts[0] = verts[2];
+    verts[1] = verts[3];
 
-        verts.emplace_back(x1+dir.x,y1+dir.y);
-        verts.emplace_back(x1-dir.x,y1-dir.y);
-        verts.emplace_back(x2-dir.x,y2-dir.y);
-        verts.emplace_back(x2+dir.x,y2+dir.y);
+    for (int i=2; i< verts.size()-2; ++i){
+        float d = Vec2::dot(verts[i],verts[i+2])+1;
+        verts[i].x += verts[i+2].x;
+        verts[i].y += verts[i+2].y;
+        //verts[i] = verts[i].normalized();
+
+        verts[i].x *= 1/d;
+        verts[i].y *= 1/d;
+
+        verts[i].x *= w;
+        verts[i].y *= w;
     }
-    // Draw Line Caps
-    if (caps && w > 1.0f)
+
+    if (points.front().x == points.back().x && points.front().y == points.back().y)
     {
-        int r = int(w)+3;
-        for (int i=0; i<int(points.size()); ++i)
-            drawCircle(points[i].x,points[i].y, w, r);
+        {
+            int i = 0;
+        float d = Vec2::dot(verts[i],verts[verts.size()-2])+1;
+        verts[i].x += verts[verts.size()-2].x;
+        verts[i].y += verts[verts.size()-2].y;
+        //verts[i] = verts[i].normalized();
+
+        verts[i].x *= 1/d;
+        verts[i].y *= 1/d;
+
+        verts[i].x *= w;
+        verts[i].y *= w;
+        }
+        {
+        int i = 1;
+        float d = Vec2::dot(verts[i],verts[verts.size()-1])+1;
+        verts[i].x += verts[verts.size()-1].x;
+        verts[i].y += verts[verts.size()-1].y;
+        //verts[i] = verts[i].normalized();
+
+        verts[i].x *= 1/d;
+        verts[i].y *= 1/d;
+
+        verts[i].x *= w;
+        verts[i].y *= w;
+        }
+        verts[verts.size()-2] = verts[0];
+        verts[verts.size()-1] = verts[1];
+    }else
+    {
+        verts[0] = verts[0].normalized();
+        verts[1] = verts[1].normalized();
+        verts[verts.size()-2] = verts[verts.size()-2].normalized();
+        verts[verts.size()-1] = verts[verts.size()-1].normalized();
+        verts[0].x *= w;
+        verts[1].x *= w;
+        verts[verts.size()-2].x *= w;
+        verts[verts.size()-1].x *= w;
+        verts[0].y *= w;
+        verts[1].y *= w;
+        verts[verts.size()-2].y *= w;
+        verts[verts.size()-1].y *= w;
     }
-    drawArrays(verts,GL_QUADS);
+
+    for (int i=0; i<points.size(); ++i){
+        verts[i*2].x += points[i].x;
+        verts[i*2].y += points[i].y;
+        verts[i*2+1].x += points[i].x;
+        verts[i*2+1].y += points[i].y;
+    }
+    drawArrays(verts,GL_QUAD_STRIP);
 }
 
 void setView(float left, float bottom, float right, float top)
@@ -413,7 +470,7 @@ void drawCircleOutline(float x, float y, float r, int segments,float w)
         verts.emplace_back(x+sin(a)*r,y+cos(a)*r);
     }
     verts.push_back(verts.front());
-    drawLine(verts,w,false);
+    drawLine(verts,w);
 }
 
 int loadTexture(const string& filename)

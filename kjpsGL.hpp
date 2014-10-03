@@ -21,6 +21,7 @@ struct Vec2
     Vec2(float x = 0.0f, float y = 0.0f);
     float magnitude(); //!< aprēķina vektora garumu \return vektora garums
     Vec2 normalized(); //!< \return normalizēts vektors (virziena vektors ar garumu 1)
+    static float dot(const Vec2&, const Vec2&); //!< \return divu vektoru dot produkts
 };
 
 //! \brief 32 bitu RGBA krāsa
@@ -195,15 +196,13 @@ void drawCircleOutline(float x, float y, float r, int segments = 64, float w = 1
     \param x2 līnijas gala pozīcija x
     \param y2 līnijas gala pozīcija y
     \param w līnijas platums (resnums)
-    \param caps līnijas galu noapaļošana (on/off)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-void drawLine(float x1, float y1, float x2, float y2,float w = 1,bool caps = false);
+void drawLine(float x1, float y1, float x2, float y2,float w = 1);
 /*! \brief Zīmē nepārtrauktu lauztu līniju
     \param points līnijas virsotnes
     \param w līnijas platums(resnums)
-    \param caps līnijas galu noapaļošana (on/off)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-void drawLine(const std::vector<Vec2>& points,float w=1,bool caps=true);
+void drawLine(const std::vector<Vec2>& points,float w=1);
 
 /*! \brief Zīmē masīvus (Vertex Arrays)
     \param vertices virsotnes
