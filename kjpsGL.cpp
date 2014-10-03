@@ -352,7 +352,7 @@ void drawLine(const vector<Vec2>& points,float w)
             uv[i].x/=s.x;
             uv[i].y/=s.y;
         }
-        drawArrays(verts,uv,GL_QUAD_STRIP);
+        drawArrays(verts,uv,vector<Color>(verts.size(),color),GL_QUAD_STRIP);
     }else drawArrays(verts,GL_QUAD_STRIP);
 }
 
