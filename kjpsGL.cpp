@@ -256,14 +256,13 @@ void drawRectangle(float left, float bottom, float right, float top, float uvLef
         GL_QUADS);
 }
 
-void drawLine(float x1, float y1, float x2, float y2,float w, bool)
+void drawLine(float x1, float y1, float x2, float y2,float w)
 {
     drawLine({Vec2(x1,y1), Vec2(x2,y2)},w);
 }
 
 void drawLine(const vector<Vec2>& points,float w)
 {
-    if (boundTexture>=0) cerr << "WARN: " << __FUNCTION__ << " doesn't support texture mapping (no uv cords)!\n";
     w*=.5f;
     vector<Vec2> verts;
     verts.reserve(points.size()*4);
@@ -345,7 +344,16 @@ void drawLine(const vector<Vec2>& points,float w)
         verts[i*2+1].x += points[i].x;
         verts[i*2+1].y += points[i].y;
     }
-    drawArrays(verts,GL_QUAD_STRIP);
+
+    if (boundTexture>=0){
+        vector<Vec2> uv = verts;
+        const Vec2 s (getTextureWidth(boundTexture),getTextureHeight(boundTexture));
+        for (int i=0; i<verts.size(); ++i){
+            uv[i].x/=s.x;
+            uv[i].y/=s.y;
+        }
+        drawArrays(verts,uv,GL_QUAD_STRIP);
+    }else drawArrays(verts,GL_QUAD_STRIP);
 }
 
 void setView(float left, float bottom, float right, float top)

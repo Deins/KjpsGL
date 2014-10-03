@@ -150,7 +150,6 @@ int main()
 	destroyTexture(t2);
 }
 	\endcode
-	\warning Teksturēšanu neatbalsta kjpsgl::drawLine() un visas kontūru zīmēšanas funkcijas.
 	\warning Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! 
 	\note tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id. 
 	
