@@ -32,6 +32,7 @@
 			<Add option="-Wredundant-decls" />
 			<Add option="-Wfloat-equal" />
 			<Add option="-Wunreachable-code" />
+			<Add option="-std=c++0x" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add directory="SDL2/include" />
