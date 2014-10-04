@@ -127,6 +127,21 @@ void clearScreen(unsigned char red = 0, unsigned char green = 0, unsigned char b
     \param top skata augšējā mala (y2 kordinate)*/
 void setView(float left, float bottom, float right, float top);
 
+/*! \brief rotē skatu
+    \param angle lenķiskais lielums grādos
+*/
+void rotateView(float angle);
+
+/*! \brief pabīda skatu
+    \param x attālums par cik pakustināt skata x kordināti
+    \param y attālums par cik pakustināt skata y kordināti
+*/
+void moveView(float x, float y);
+
+/*! \brief istata oriģinālo noklusējuma skatu.
+    nolkusējuma skats ir setView(0,0,logaPlatums,logaAugstums); */
+void resetView();
+
 /*! \brief Uzstāda zīmēšanas krāsu
     \param red krāsas red vērtība [0,255]
     \param green krāsas green vērtība [0,255]
@@ -186,9 +201,9 @@ void drawRectangleOutline(float left, float bottom, float right, float top,float
     \param x centra koordinate x
     \param y centra koordinate y
     \param r apļa radius
-    \param segments segmentu skaits ko izmantot apļa zīmēšanai
-    \param w kontūras platums(resnums)*/
-void drawCircleOutline(float x, float y, float r, int segments = 64, float w = 1);
+    \param w kontūras platums(resnums)
+    \param segments segmentu skaits ko izmantot apļa zīmēšanai*/
+void drawCircleOutline(float x, float y, float r, float w = 1,int segments = 64);
 
 /*! \brief Zīmē līniju
     \param x1 līnijas sākuma pozīcija x

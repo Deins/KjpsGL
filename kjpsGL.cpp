@@ -112,7 +112,7 @@ void init(int width, int height, bool fullscreen,int msaa)
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // Alpha blending
         glShadeModel(GL_SMOOTH);
         glViewport(0,0,width,height);
-        setView(0,0,width,height);
+        resetView();
 
         lastFrame = SDL_GetPerformanceCounter();
         randomSeed = lastFrame;
@@ -382,6 +382,21 @@ void setView(float left, float bottom, float right, float top)
     glTranslatef(-left,-bottom,0.0f);
 }
 
+void rotateView(float angle)
+{
+    glRotatef(angle,0,0,1);
+}
+
+void moveView(float x,float y)
+{
+    glTranslatef(-x,-y,0);
+}
+
+void resetView()
+{
+    setView(0,0,getWindowWidth(),getWindowHeight());
+}
+
 float getDeltaTime()
 {
     return deltaTime;
@@ -483,7 +498,7 @@ void drawRectangleOutline(float left, float bottom, float right, float top,float
     drawLine(v,w);
 }
 
-void drawCircleOutline(float x, float y, float r, int segments,float w)
+void drawCircleOutline(float x, float y, float r,float w, int segments)
 {
     vector<Vec2> verts;
     verts.reserve(segments+1);
@@ -602,6 +617,13 @@ int getWindowHeight()
     int w,h;
     SDL_GetWindowSize(window,&w,&h);
     return h;
+}
+
+int getWindowWidth()
+{
+    int w,h;
+    SDL_GetWindowSize(window,&w,&h);
+    return w;
 }
 
 long long random()
