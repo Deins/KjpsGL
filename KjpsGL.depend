@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1413660539 source:c:\dev\c++\kjpsgl\kjpsgl.cpp
+1413662009 source:c:\dev\c++\kjpsgl\kjpsgl.cpp
 	"kjpsGL.hpp"
 	"sdl.h"
 	"lodepng.h"
@@ -378,7 +378,7 @@
 	<stdlib.h>
 	<fstream>
 
-1413660264 source:c:\dev\c++\kjpsgl\main.cpp
+1413663239 source:c:\dev\c++\kjpsgl\main.cpp
 	"kjpsGL.hpp"
-	<iostream>
+	<algorithm>
 
