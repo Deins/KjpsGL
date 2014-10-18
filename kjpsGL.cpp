@@ -39,7 +39,7 @@ int mouseWheel;
 bool inited = false;
 Vec2 texPos,texSize;
 float lineWidth;
-TexturingMode texturingMode;
+TexturingMode texturingMode = TexturingMode::Stretch;
 
 //  struct & class implementations:
 Vec2::Vec2(float x, float y): x(x), y(y) {}
@@ -515,7 +515,8 @@ int getTextureWidth(int id)
     return textureSizes[id].x;
 }
 
-void setTexturingMode(TexturingMode mode){
+void setTexturingMode(TexturingMode mode)
+{
     texturingMode = mode;
 }
 
@@ -621,7 +622,10 @@ unsigned getTime()
     return SDL_GetTicks();
 }
 
-bool isInit(){return inited;}
+bool isInit()
+{
+    return inited;
+}
 
 void setTexturingRect(float left,float bottom, float right, float top)
 {
@@ -631,51 +635,62 @@ void setTexturingRect(float left,float bottom, float right, float top)
     texSize.y = top-bottom;
 }
 
-void drawShape(const std::vector<Vec2>& verts,unsigned mode){
+void drawShape(const std::vector<Vec2>& verts,unsigned mode)
+{
     if (boundTexture>=0)
     {
         vector<Vec2> uv = verts;
-        Vec2 off;
-        Vec2 scale = texSize;
-        switch (texturingMode){
-            case (TexturingMode::Repeat):
-                off = texPos;
-                scale.x = 1.0f/getTextureWidth(boundTexture);
-                scale.y = 1.0f/getTextureHeight(boundTexture);
-                break;
+        Vec2 off,scale;
+        switch (texturingMode)
+        {
+        case (TexturingMode::Repeat):
+            scale.x = 1.0f/getTextureWidth(boundTexture);
+            scale.y = 1.0f/getTextureHeight(boundTexture);
+            break;
 
-            case (TexturingMode::Stretch):{
-                Vec2 mn=Vec2(999999999,999999999),mx=Vec2(-999999999,-999999999);
-                for (auto v : uv){
-                    mn.x = min(mn.x,v.x);
-                    mn.y = min(mn.y,v.y);
-                    mx.x = max(mx.x,v.x);
-                    mx.y = max(mx.y,v.y);
-                }
-                scale.x = 1.0f/(mx.x-mn.x);
-                scale.y = 1.0f/(mx.y-mn.y);
-                break;
+        case (TexturingMode::Stretch):
+        {
+            Vec2 mn=Vec2(999999999,999999999),mx=Vec2(-999999999,-999999999);
+            for (auto v : uv)
+            {
+                mn.x = min(mn.x,v.x);
+                mn.y = min(mn.y,v.y);
+                mx.x = max(mx.x,v.x);
+                mx.y = max(mx.y,v.y);
             }
-
-            case (TexturingMode::Manual):
-                off = texPos;
-                scale.x = 1.0f/texSize.x;
-                scale.y = 1.0f/texSize.y;
-                break;
+            cout << (mx.x-mn.x) << ' ' << (mx.y-mn.y) << endl;
+            scale.x = 1.0f/(mx.x-mn.x);
+            scale.y = 1.0f/(mx.y-mn.y);
+            off = Vec2(mn.x,mn.y);
+            break;
         }
-        for (auto& v : uv){
+
+        case (TexturingMode::Manual):
+            off = texPos;
+            scale.x = 1.0f/texSize.x;
+            scale.y = 1.0f/texSize.y;
+            break;
+        }
+        for (auto& v : uv)
+        {
             v.x =  (v.x-off.x) * scale.x;
             v.y =  (-v.y+off.y) * scale.y;
         }
         drawArrays(verts,uv,vector<Color>(verts.size(),color),mode);
-    } else {
+    }
+    else
+    {
         drawArrays(verts,vector<Color>(verts.size(),color),mode);
     }
 }
 
-void setLineWidth(float w){
+void setLineWidth(float w)
+{
     lineWidth = w;
 }
 
-float getLineWidth(){return lineWidth;}
+float getLineWidth()
+{
+    return lineWidth;
+}
 }

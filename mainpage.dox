@@ -97,7 +97,8 @@
 		drawCircle(128,200,64); // zīmē zaļu apli
 		drawCircle(128,300,64); // arī šis būs zaļš, nekas nav mainījies
 		setColor(0,0,255);
-		drawCircleOutline(128,300,64,64,16); // zīmē pēdējam aplim 16px biezu zilu apļa kontūru
+		setLineWidth(16);
+		drawCircleOutline(128,300,64,64); // zīmē pēdējam aplim 16px biezu zilu apļa kontūru
 		display(); // attēlojam uzzīmēto uz ekrāna
 
 		// Gaidam līdz programma tiks aizvērta
@@ -116,7 +117,10 @@
 	Šis tekstūras id ir int tipa mainīgais un tiek izmantots visās citās ar teksturēšanu saistītajās funkcijās lai identificētu tekstūru.
 	Lai uzsāktu teksturēšanu ir jāizsauc kjpsgl::setTexture() padodot vēlamās tekstūras id. 
 	Lai atslēgtu teksturēšanu jāizsauc kjpsgl::setTexture(-1). 
-	Piemērs:
+	
+	\warning Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! 
+	\note tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, 	neizmantojiet opengl komandās kjpsgl tekstūras id. 
+
 	\code
 #include "kjpsGL.hpp"
 
@@ -150,13 +154,70 @@ int main()
 	destroyTexture(t2);
 }
 	\endcode
-	\warning Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! 
-	\note tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id. 
 	
+	Teksturēšanai pieejami 3 režīmi: 
+	\li 1 TexturingMode::Stretch izstiepj tekstūru pa visu zīmējamo figūru
+	\li 2 TexturingMode::Repeat zīmē tekstūru oriģinālajā izmērā un to atkārto
+	\li 3 TexturingMode::Manual zīmēšanas režīms kas strādā tā pat kā Repeat taču ļauj izstiept un nobīdīt tekstūru izmantojot setTextureRect()
+	
+	\sa kjpsgl::setTexturingMode()	
+	\sa kjpsgl::TexturingMode
+	\sa kjpsgl::setTexturingRect()
+	
+	\b Piemērs:
+	\code
+#include "kjpsGL.hpp"
+#include <iostream>
+using namespace std;
+using namespace kjpsgl;
+int main()
+{
+    init(1024,720); // inicializējam bibliotēku un atveram 1024x720px logu zīmēšanai
+    int txt = loadTexture("data/p1.png");
+    int txt2 = loadTexture("data/p2.png");
+    setLineWidth(4);
+    while (true) // Daram visu laiku, bibliotēka programmu apturēs ja logā nospiedīs 'X'
+    {
+        update(); // nolasam jauno ievadu (input)
+        clearScreen(0,0,0);
+
+        setLineWidth(getLineWidth()+getMouseWheel());
+        if (getKey("1")) setTexturingMode(TexturingMode::Stretch);
+        if (getKey("2")) setTexturingMode(TexturingMode::Repeat);
+        if (getKey("3")) setTexturingMode(TexturingMode::Manual);
+
+        { // Uzstādam teksturēšanas apgabalu (redzamst tikai TexturingMode::Manual režīmā)
+            float f = getTime()*.1;
+            setTexturingRect(f,0,getWindowHeight()*.1f+f,getWindowWidth()*.1f);
+        }
+
+        setTexture(txt);
+        drawTriangle(22,70,88,222,268,68);
+        drawRectangle(300,33,400,222);
+        drawCircle(500,111,75);
+        drawLine(600,32,800,222);
+        setTexture(txt2);
+        drawTriangleOutline(22,70,88,222,268,68);
+        drawRectangleOutline(300,33,400,222);
+        drawCircleOutline(500,111,75);
+
+        moveView(0,-300);
+        drawTriangle(22,70,88,222,268,68);
+        drawRectangle(300,33,400,222);
+        drawCircle(500,111,75);
+        drawLine(600,32,800,222);
+        resetView();
+
+        display(); // attēlojam uzzīmēto uz ekrāna
+    }
+    return 0;
+}
+	\endcode
+
 	\subsection input Ievad komandas un palīgkomandas
 	Visas ievadfunkcijas atgriež pieprasīto stāvokli kāds tas bija pēdējajā kjpsgl::update()
 	
-	Piemērs:
+	\b Piemērs:
 	\code
 #include "kjpsGL.hpp"
 

@@ -4,6 +4,7 @@ var searchData=
   ['getanykey',['getAnyKey',['../namespacekjpsgl.html#a140f7b4c3cff4b680b1f93dcae3616ed',1,'kjpsgl']]],
   ['getdeltatime',['getDeltaTime',['../namespacekjpsgl.html#a2e3652632f719b0f989f50dc111fa231',1,'kjpsgl']]],
   ['getkey',['getKey',['../namespacekjpsgl.html#a152fea540d0e62e4a40bbca6816fead7',1,'kjpsgl']]],
+  ['getlinewidth',['getLineWidth',['../namespacekjpsgl.html#a8ac30ab301705eb90dfee9a73f6f1615',1,'kjpsgl']]],
   ['getmousebutton',['getMouseButton',['../namespacekjpsgl.html#ad837b823002784acd162219b00b51b3c',1,'kjpsgl']]],
   ['getmousewheel',['getMouseWheel',['../namespacekjpsgl.html#a7def8093754f51fbaa74940f891b704d',1,'kjpsgl']]],
   ['getmousex',['getMouseX',['../namespacekjpsgl.html#a0dc86004ab3bc1fbd3253b6b2a6b5875',1,'kjpsgl']]],

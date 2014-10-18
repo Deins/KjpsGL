@@ -39,8 +39,8 @@ struct Color
 enum TexturingMode
 {
     // 0 slot reserved
-    Repeat = 1,
-    Stretch = 2,
+    Stretch = 1,
+    Repeat = 2,
     Manual = 3
 };
 
@@ -197,8 +197,7 @@ void drawCircle(float x, float y, float r, int segments = 64);
     \param bx B x koordinate
     \param by B y koordinate
     \param cx C x koordinate
-    \param cy C y koordinate
-    \param w kontūras platums(resnums)*/
+    \param cy C y koordinate*/
 void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy);
 //! Uzzīmē taisnstūra kontūru
 void drawRectangleOutline(float left, float bottom, float right, float top);
@@ -206,7 +205,6 @@ void drawRectangleOutline(float left, float bottom, float right, float top);
     \param x centra koordinate x
     \param y centra koordinate y
     \param r apļa radius
-    \param w kontūras platums(resnums)
     \param segments segmentu skaits ko izmantot apļa zīmēšanai*/
 void drawCircleOutline(float x, float y, float r, int segments = 64);
 
@@ -215,12 +213,10 @@ void drawCircleOutline(float x, float y, float r, int segments = 64);
     \param y1 līnijas sākuma pozīcija y
     \param x2 līnijas gala pozīcija x
     \param y2 līnijas gala pozīcija y
-    \param w līnijas platums (resnums)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
 void drawLine(float x1, float y1, float x2, float y2);
 /*! \brief Zīmē nepārtrauktu lauztu līniju
     \param points līnijas virsotnes
-    \param w līnijas platums(resnums)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
 void drawLine(const std::vector<Vec2>& points);
 
@@ -579,7 +575,7 @@ bool isInit();
 
 /*! \brief uzzīmē figūru.
     Uzzīmē figūru ar drawArrays() uzģenerējot teksturēšanas koordinātes un krāsu atbilstoši uzstādītajiem setColor() un setTexturingRect().
-    \param vers figūras virsotnes
+    \param verts figūras virsotnes
     \param mode OpenGL zīmēšanas režīms, skatiet drawArrays()
     \sa drawArrays()
 */

@@ -65,7 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Visi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Nosaukumvietas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkcijas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Mainīgie</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Lapas</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Visi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Nosaukumvietas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkcijas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Mainīgie</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Uzskaitījumi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Lapas</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -131,7 +131,8 @@ Zīmēšanas komandas</h2>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a>(128,200,64); <span class="comment">// zīmē zaļu apli</span></div>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a>(128,300,64); <span class="comment">// arī šis būs zaļš, nekas nav mainījies</span></div>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a">setColor</a>(0,0,255);</div>
-<div class="line">    <a class="code" href="namespacekjpsgl.html#ab1346fcf4b6d6913205ebd090fc57e00">drawCircleOutline</a>(128,300,64,64,16); <span class="comment">// zīmē pēdējam aplim 16px biezu zilu apļa kontūru</span></div>
+<div class="line">    <a class="code" href="namespacekjpsgl.html#a64ab047a8fdfe3291c61d2fd050cd108">setLineWidth</a>(16);</div>
+<div class="line">    <a class="code" href="namespacekjpsgl.html#aebcc999adf6be8c74cfb424dae6db587">drawCircleOutline</a>(128,300,64,64); <span class="comment">// zīmē pēdējam aplim 16px biezu zilu apļa kontūru</span></div>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#a48aaec112b9ffc7109d9be7e7f46f998">display</a>(); <span class="comment">// attēlojam uzzīmēto uz ekrāna</span></div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// Gaidam līdz programma tiks aizvērta</span></div>
@@ -143,7 +144,10 @@ Zīmēšanas komandas</h2>
 <div class="line">}</div>
 </div><!-- fragment --><h2><a class="anchor" id="texturing"></a>
 Tekstūru izmantošana (attēlu attēlošana)</h2>
-<p>Lai izmantotu tekstūras vispirms attēls ir jāielasa no faila jāatkodē un jāaizsūta video kartei (jo mēs izmantojam hardware acceleration ar opengl). To visu var izdarīt ar vienu komandu int <a class="el" href="namespacekjpsgl.html#a8de7976019f62c33b60a9cfa8eff16be" title="Ielādē tekstūru. ">kjpsgl::loadTexture(const std::string&amp; failaNosaukums)</a>. Šai funkcijai padod faila nosaukumu (relatīvi no programmas atrašanās vietas vai ar pilno ceļu) tā izdara visas nepieciešamās darbības un atgriež tekstūras identifikatoru (id). Šis tekstūras id ir int tipa mainīgais un tiek izmantots visās citās ar teksturēšanu saistītajās funkcijās lai identificētu tekstūru. Lai uzsāktu teksturēšanu ir jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture()</a> padodot vēlamās tekstūras id. Lai atslēgtu teksturēšanu jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture</a>(-1). Piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
+<p>Lai izmantotu tekstūras vispirms attēls ir jāielasa no faila jāatkodē un jāaizsūta video kartei (jo mēs izmantojam hardware acceleration ar opengl). To visu var izdarīt ar vienu komandu int <a class="el" href="namespacekjpsgl.html#a8de7976019f62c33b60a9cfa8eff16be" title="Ielādē tekstūru. ">kjpsgl::loadTexture(const std::string&amp; failaNosaukums)</a>. Šai funkcijai padod faila nosaukumu (relatīvi no programmas atrašanās vietas vai ar pilno ceļu) tā izdara visas nepieciešamās darbības un atgriež tekstūras identifikatoru (id). Šis tekstūras id ir int tipa mainīgais un tiek izmantots visās citās ar teksturēšanu saistītajās funkcijās lai identificētu tekstūru. Lai uzsāktu teksturēšanu ir jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture()</a> padodot vēlamās tekstūras id. Lai atslēgtu teksturēšanu jāizsauc <a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830" title="Uzstāda zīmēšanai tekstūru. ">kjpsgl::setTexture</a>(-1).</p>
+<dl class="section warning"><dt>Brīdinājums</dt><dd>Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! </dd></dl>
+<dl class="section note"><dt>Piezīme</dt><dd>tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id.</dd></dl>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
@@ -174,12 +178,66 @@ Tekstūru izmantošana (attēlu attēlošana)</h2>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#ae7a0b9ec50fb530cea836a997c6682c3">destroyTexture</a>(t1);</div>
 <div class="line">    <a class="code" href="namespacekjpsgl.html#ae7a0b9ec50fb530cea836a997c6682c3">destroyTexture</a>(t2);</div>
 <div class="line">}</div>
-</div><!-- fragment --> <dl class="section warning"><dt>Brīdinājums</dt><dd>Bibliotēka pagaidām atbalsta tikai *.png attēla formātu! </dd></dl>
-<dl class="section note"><dt>Piezīme</dt><dd>tiem kas grib izmantot opengl pa tiešo: kjpsgl tekstūras id un opengl tekstūras id var būt atšķirīgi, neizmantojiet opengl komandās kjpsgl tekstūras id.</dd></dl>
-<h2><a class="anchor" id="input"></a>
+</div><!-- fragment --><p>Teksturēšanai pieejami 3 režīmi: </p><ul>
+<li>1 TexturingMode::Stretch izstiepj tekstūru pa visu zīmējamo figūru </li>
+<li>2 TexturingMode::Repeat zīmē tekstūru oriģinālajā izmērā un to atkārto </li>
+<li>3 TexturingMode::Manual zīmēšanas režīms kas strādā tā pat kā Repeat taču ļauj izstiept un nobīdīt tekstūru izmantojot setTextureRect()</li>
+</ul>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78" title="Uzstāda teksturēšanas režīmu. ">kjpsgl::setTexturingMode()</a> </dd>
+<dd>
+<a class="el" href="namespacekjpsgl.html#a9f233b1baec3965d6309723ac9b70d61" title="teksturēšanas režīms ">kjpsgl::TexturingMode</a> </dd>
+<dd>
+<a class="el" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a" title="Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās p...">kjpsgl::setTexturingRect()</a></dd></dl>
+<p><b>Piemērs:</b> </p><div class="fragment"><div class="line"><span class="preprocessor">    #include &quot;kjpsGL.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
+<div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
+<div class="line"><span class="keywordtype">int</span> main()</div>
+<div class="line">{</div>
+<div class="line">    <a class="code" href="namespacekjpsgl.html#ae6175b179d3f2ffc572b879a8b0665c8">init</a>(1024,720); <span class="comment">// inicializējam bibliotēku un atveram 1024x720px logu zīmēšanai</span></div>
+<div class="line">    <span class="keywordtype">int</span> txt = loadTexture(<span class="stringliteral">&quot;data/p1.png&quot;</span>);</div>
+<div class="line">    <span class="keywordtype">int</span> txt2 = loadTexture(<span class="stringliteral">&quot;data/p2.png&quot;</span>);</div>
+<div class="line">    <a class="code" href="namespacekjpsgl.html#a64ab047a8fdfe3291c61d2fd050cd108">setLineWidth</a>(4);</div>
+<div class="line">    <span class="keywordflow">while</span> (<span class="keyword">true</span>) <span class="comment">// Daram visu laiku, bibliotēka programmu apturēs ja logā nospiedīs &#39;X&#39;</span></div>
+<div class="line">    {</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383">update</a>(); <span class="comment">// nolasam jauno ievadu (input)</span></div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a20758a6f9833df4588703b25300ecb8a">clearScreen</a>(0,0,0);</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a64ab047a8fdfe3291c61d2fd050cd108">setLineWidth</a>(<a class="code" href="namespacekjpsgl.html#a8ac30ab301705eb90dfee9a73f6f1615">getLineWidth</a>()+<a class="code" href="namespacekjpsgl.html#a7def8093754f51fbaa74940f891b704d">getMouseWheel</a>());</div>
+<div class="line">        <span class="keywordflow">if</span> (getKey(<span class="stringliteral">&quot;1&quot;</span>)) <a class="code" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78">setTexturingMode</a>(TexturingMode::Stretch);</div>
+<div class="line">        <span class="keywordflow">if</span> (getKey(<span class="stringliteral">&quot;2&quot;</span>)) <a class="code" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78">setTexturingMode</a>(TexturingMode::Repeat);</div>
+<div class="line">        <span class="keywordflow">if</span> (getKey(<span class="stringliteral">&quot;3&quot;</span>)) <a class="code" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78">setTexturingMode</a>(TexturingMode::Manual);</div>
+<div class="line"></div>
+<div class="line">        { <span class="comment">// Uzstādam teksturēšanas apgabalu (redzamst tikai TexturingMode::Manual režīmā)</span></div>
+<div class="line">            <span class="keywordtype">float</span> f = <a class="code" href="namespacekjpsgl.html#aa3e72341a7876321003a4abb2bc880a6">getTime</a>()*.1;</div>
+<div class="line">            <a class="code" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a">setTexturingRect</a>(f,0,<a class="code" href="namespacekjpsgl.html#a69ff6abcf9fb425092fff273fc611273">getWindowHeight</a>()*.1f+f,<a class="code" href="namespacekjpsgl.html#aa5c5ea5a9674cfd977dd05c3cd57eef7">getWindowWidth</a>()*.1f);</div>
+<div class="line">        }</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830">setTexture</a>(txt);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a81027f8375717eee1bb54daff66815e9">drawTriangle</a>(22,70,88,222,268,68);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f">drawRectangle</a>(300,33,400,222);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a>(500,111,75);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aff4f508f8d999be84552aff98d0a0e9b">drawLine</a>(600,32,800,222);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830">setTexture</a>(txt2);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aa715e5ff88da16558945a95d09bd6d8c">drawTriangleOutline</a>(22,70,88,222,268,68);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#ab9d89876e09084674aad67efae7faff7">drawRectangleOutline</a>(300,33,400,222);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aebcc999adf6be8c74cfb424dae6db587">drawCircleOutline</a>(500,111,75);</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a0c8178e65849010a424ee9af8a994bae">moveView</a>(0,-300);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a81027f8375717eee1bb54daff66815e9">drawTriangle</a>(22,70,88,222,268,68);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f">drawRectangle</a>(300,33,400,222);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a>(500,111,75);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#aff4f508f8d999be84552aff98d0a0e9b">drawLine</a>(600,32,800,222);</div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#ab19b498c827e8e73138c06e348e690ce">resetView</a>();</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="namespacekjpsgl.html#a48aaec112b9ffc7109d9be7e7f46f998">display</a>(); <span class="comment">// attēlojam uzzīmēto uz ekrāna</span></div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="input"></a>
 Ievad komandas un palīgkomandas</h2>
 <p>Visas ievadfunkcijas atgriež pieprasīto stāvokli kāds tas bija pēdējajā <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">kjpsgl::update()</a></p>
-<p>Piemērs: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
+<p><b>Piemērs:</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;kjpsGL.hpp&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespacekjpsgl.html">kjpsgl</a>;</div>
@@ -233,7 +291,7 @@ Advancētās zīmēšanas komandas drawArrays()</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Ģenerēts Piekt Okt 3 2014 21:54:42 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
+Ģenerēts Sest Okt 18 2014 22:41:39 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

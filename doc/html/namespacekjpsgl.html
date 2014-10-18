@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Visi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Nosaukumvietas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkcijas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Mainīgie</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Lapas</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Visi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Nosaukumvietas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funkcijas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Mainīgie</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Uzskaitījumi</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Lapas</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Meklēt');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Klases</a> &#124;
+<a href="#enum-members">Uzskaitījumi</a> &#124;
 <a href="#func-members">Funkcijas</a>  </div>
   <div class="headertitle">
 <div class="title">kjpsgl nosaukumvietas apraksts</div>  </div>
@@ -100,6 +101,12 @@ Klases</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">2D Vektors  <a href="structkjpsgl_1_1_vec2.html#details">vairāk...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Uzskaitījumi</h2></td></tr>
+<tr class="memitem:a9f233b1baec3965d6309723ac9b70d61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9f233b1baec3965d6309723ac9b70d61"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a9f233b1baec3965d6309723ac9b70d61">TexturingMode</a> </td></tr>
+<tr class="memdesc:a9f233b1baec3965d6309723ac9b70d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">teksturēšanas režīms <br /></td></tr>
+<tr class="separator:a9f233b1baec3965d6309723ac9b70d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funkcijas</h2></td></tr>
@@ -124,15 +131,22 @@ Funkcijas</h2></td></tr>
 <tr class="memitem:af0a6a2efeb46d2cc59596ef8f7ce6a1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#af0a6a2efeb46d2cc59596ef8f7ce6a1f">drawRectangle</a> (float left, float bottom, float right, float top)</td></tr>
 <tr class="memdesc:af0a6a2efeb46d2cc59596ef8f7ce6a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē taisnstūri.  <a href="#af0a6a2efeb46d2cc59596ef8f7ce6a1f">vairāk...</a><br /></td></tr>
 <tr class="separator:af0a6a2efeb46d2cc59596ef8f7ce6a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5ddcbc7e1ff2929fc281cf1e41d5c4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ad5ddcbc7e1ff2929fc281cf1e41d5c4d">drawRectangle</a> (float left, float bottom, float right, float top, float uvLeft, float uvBottom, float uvRight, float uvTop)</td></tr>
-<tr class="memdesc:ad5ddcbc7e1ff2929fc281cf1e41d5c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē taisnstūri norādot tekstūras kordinates.  <a href="#ad5ddcbc7e1ff2929fc281cf1e41d5c4d">vairāk...</a><br /></td></tr>
-<tr class="separator:ad5ddcbc7e1ff2929fc281cf1e41d5c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0d20f67f9026518a36d0561c10bf6e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#af0d20f67f9026518a36d0561c10bf6e1">drawLine</a> (float x1, float y1, float x2, float y2, float w=1)</td></tr>
-<tr class="memdesc:af0d20f67f9026518a36d0561c10bf6e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zīmē līniju.  <a href="#af0d20f67f9026518a36d0561c10bf6e1">vairāk...</a><br /></td></tr>
-<tr class="separator:af0d20f67f9026518a36d0561c10bf6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff4f508f8d999be84552aff98d0a0e9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aff4f508f8d999be84552aff98d0a0e9b">drawLine</a> (float x1, float y1, float x2, float y2)</td></tr>
+<tr class="memdesc:aff4f508f8d999be84552aff98d0a0e9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zīmē līniju.  <a href="#aff4f508f8d999be84552aff98d0a0e9b">vairāk...</a><br /></td></tr>
+<tr class="separator:aff4f508f8d999be84552aff98d0a0e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaac7130b0ca3a5e3be255cdb3d526586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aaac7130b0ca3a5e3be255cdb3d526586">setView</a> (float left, float bottom, float right, float top)</td></tr>
 <tr class="memdesc:aaac7130b0ca3a5e3be255cdb3d526586"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda zīmēšanas skatu.  <a href="#aaac7130b0ca3a5e3be255cdb3d526586">vairāk...</a><br /></td></tr>
 <tr class="separator:aaac7130b0ca3a5e3be255cdb3d526586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad4e814f6c6610c3e4429f997824059a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aad4e814f6c6610c3e4429f997824059a">rotateView</a> (float angle)</td></tr>
+<tr class="memdesc:aad4e814f6c6610c3e4429f997824059a"><td class="mdescLeft">&#160;</td><td class="mdescRight">rotē skatu  <a href="#aad4e814f6c6610c3e4429f997824059a">vairāk...</a><br /></td></tr>
+<tr class="separator:aad4e814f6c6610c3e4429f997824059a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8178e65849010a424ee9af8a994bae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a0c8178e65849010a424ee9af8a994bae">moveView</a> (float x, float y)</td></tr>
+<tr class="memdesc:a0c8178e65849010a424ee9af8a994bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">pabīda skatu  <a href="#a0c8178e65849010a424ee9af8a994bae">vairāk...</a><br /></td></tr>
+<tr class="separator:a0c8178e65849010a424ee9af8a994bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab19b498c827e8e73138c06e348e690ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab19b498c827e8e73138c06e348e690ce"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ab19b498c827e8e73138c06e348e690ce">resetView</a> ()</td></tr>
+<tr class="memdesc:ab19b498c827e8e73138c06e348e690ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">istata oriģinālo noklusējuma skatu. nolkusējuma skats ir setView(0,0,logaPlatums,logaAugstums); <br /></td></tr>
+<tr class="separator:ab19b498c827e8e73138c06e348e690ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e3652632f719b0f989f50dc111fa231"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a2e3652632f719b0f989f50dc111fa231">getDeltaTime</a> ()</td></tr>
 <tr class="memdesc:a2e3652632f719b0f989f50dc111fa231"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iegūst laiku kādā tika izpildītas darbības starp pēdējiem diviem <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">update()</a> izsaukumiem (ieskaitot pašu <a class="el" href="namespacekjpsgl.html#a53c68365ef4f4ffa6f79ff695c8dc383" title="Atsvaidzina bibliotēku. ">update()</a> izsaukuma laiku)  <a href="#a2e3652632f719b0f989f50dc111fa231">vairāk...</a><br /></td></tr>
 <tr class="separator:a2e3652632f719b0f989f50dc111fa231"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,16 +156,16 @@ Funkcijas</h2></td></tr>
 <tr class="memitem:a24b97777cd626b41a5cfe9a867c4eb45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a24b97777cd626b41a5cfe9a867c4eb45">drawCircle</a> (float x, float y, float r, int segments=64)</td></tr>
 <tr class="memdesc:a24b97777cd626b41a5cfe9a867c4eb45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē apli.  <a href="#a24b97777cd626b41a5cfe9a867c4eb45">vairāk...</a><br /></td></tr>
 <tr class="separator:a24b97777cd626b41a5cfe9a867c4eb45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac79362795889e400cf03257f2c73fa41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ac79362795889e400cf03257f2c73fa41">drawTriangleOutline</a> (float ax, float ay, float bx, float by, float cx, float cy, float w=1)</td></tr>
-<tr class="memdesc:ac79362795889e400cf03257f2c73fa41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē trijstūra kontūru.  <a href="#ac79362795889e400cf03257f2c73fa41">vairāk...</a><br /></td></tr>
-<tr class="separator:ac79362795889e400cf03257f2c73fa41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba8b09f2372b2db844405858b88442c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ba8b09f2372b2db844405858b88442c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a5ba8b09f2372b2db844405858b88442c">drawRectangleOutline</a> (float left, float bottom, float right, float top, float w=1)</td></tr>
-<tr class="memdesc:a5ba8b09f2372b2db844405858b88442c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē taisnstūra kontūru. <br /></td></tr>
-<tr class="separator:a5ba8b09f2372b2db844405858b88442c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1346fcf4b6d6913205ebd090fc57e00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ab1346fcf4b6d6913205ebd090fc57e00">drawCircleOutline</a> (float x, float y, float r, int segments=64, float w=1)</td></tr>
-<tr class="memdesc:ab1346fcf4b6d6913205ebd090fc57e00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē apļa kontūru.  <a href="#ab1346fcf4b6d6913205ebd090fc57e00">vairāk...</a><br /></td></tr>
-<tr class="separator:ab1346fcf4b6d6913205ebd090fc57e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa715e5ff88da16558945a95d09bd6d8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa715e5ff88da16558945a95d09bd6d8c">drawTriangleOutline</a> (float ax, float ay, float bx, float by, float cx, float cy)</td></tr>
+<tr class="memdesc:aa715e5ff88da16558945a95d09bd6d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē trijstūra kontūru.  <a href="#aa715e5ff88da16558945a95d09bd6d8c">vairāk...</a><br /></td></tr>
+<tr class="separator:aa715e5ff88da16558945a95d09bd6d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d89876e09084674aad67efae7faff7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab9d89876e09084674aad67efae7faff7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ab9d89876e09084674aad67efae7faff7">drawRectangleOutline</a> (float left, float bottom, float right, float top)</td></tr>
+<tr class="memdesc:ab9d89876e09084674aad67efae7faff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē taisnstūra kontūru. <br /></td></tr>
+<tr class="separator:ab9d89876e09084674aad67efae7faff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebcc999adf6be8c74cfb424dae6db587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aebcc999adf6be8c74cfb424dae6db587">drawCircleOutline</a> (float x, float y, float r, int segments=64)</td></tr>
+<tr class="memdesc:aebcc999adf6be8c74cfb424dae6db587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzzīmē apļa kontūru.  <a href="#aebcc999adf6be8c74cfb424dae6db587">vairāk...</a><br /></td></tr>
+<tr class="separator:aebcc999adf6be8c74cfb424dae6db587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7a0b9ec50fb530cea836a997c6682c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ae7a0b9ec50fb530cea836a997c6682c3">destroyTexture</a> (int id)</td></tr>
 <tr class="memdesc:ae7a0b9ec50fb530cea836a997c6682c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Izdzēš iepriekš ielādētu tekstūru.  <a href="#ae7a0b9ec50fb530cea836a997c6682c3">vairāk...</a><br /></td></tr>
 <tr class="separator:ae7a0b9ec50fb530cea836a997c6682c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +175,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memitem:ab43928ae5039831461b52f305e5d558a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ab43928ae5039831461b52f305e5d558a">getTextureWidth</a> (int id)</td></tr>
 <tr class="memdesc:ab43928ae5039831461b52f305e5d558a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iegūst tekstūras <em>id</em> platumu (pikseļos)  <a href="#ab43928ae5039831461b52f305e5d558a">vairāk...</a><br /></td></tr>
 <tr class="separator:ab43928ae5039831461b52f305e5d558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add412ad970cac281ebca4ed9e6a40f78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78">setTexturingMode</a> (<a class="el" href="namespacekjpsgl.html#a9f233b1baec3965d6309723ac9b70d61">TexturingMode</a> mode)</td></tr>
+<tr class="memdesc:add412ad970cac281ebca4ed9e6a40f78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda teksturēšanas režīmu.  <a href="#add412ad970cac281ebca4ed9e6a40f78">vairāk...</a><br /></td></tr>
+<tr class="separator:add412ad970cac281ebca4ed9e6a40f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa7c11a013c5c5ff81d49ada6ca9a6830">setTexture</a> (int id=-1)</td></tr>
 <tr class="memdesc:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda zīmēšanai tekstūru.  <a href="#aa7c11a013c5c5ff81d49ada6ca9a6830">vairāk...</a><br /></td></tr>
 <tr class="separator:aa7c11a013c5c5ff81d49ada6ca9a6830"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,6 +198,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="separator:a7def8093754f51fbaa74940f891b704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69ff6abcf9fb425092fff273fc611273"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a69ff6abcf9fb425092fff273fc611273">getWindowHeight</a> ()</td></tr>
 <tr class="separator:a69ff6abcf9fb425092fff273fc611273"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5c5ea5a9674cfd977dd05c3cd57eef7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa5c5ea5a9674cfd977dd05c3cd57eef7">getWindowWidth</a> ()</td></tr>
+<tr class="separator:aa5c5ea5a9674cfd977dd05c3cd57eef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">randomInRange</a> (int a, int b)</td></tr>
 <tr class="memdesc:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzģenerē nejauši izvēlētu veselu skaitli intervālā [a;b].  <a href="#aabb9c0b418b0b3d2f86cb62b3b0a8ee8">vairāk...</a><br /></td></tr>
 <tr class="separator:aabb9c0b418b0b3d2f86cb62b3b0a8ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +209,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memitem:aa3e72341a7876321003a4abb2bc880a6"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa3e72341a7876321003a4abb2bc880a6">getTime</a> ()</td></tr>
 <tr class="memdesc:aa3e72341a7876321003a4abb2bc880a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">atgriež laiku milisekundēs cik pagājis kopš bibliotēkas inicializācijas  <a href="#aa3e72341a7876321003a4abb2bc880a6">vairāk...</a><br /></td></tr>
 <tr class="separator:aa3e72341a7876321003a4abb2bc880a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a834b1ea47d6454580239ea310aa72a26"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a834b1ea47d6454580239ea310aa72a26">isInit</a> ()</td></tr>
+<tr class="separator:a834b1ea47d6454580239ea310aa72a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee97001e831e033ebaa5a13415578f1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a">setTexturingRect</a> (float left, float bottom, float right, float top)</td></tr>
+<tr class="memdesc:aee97001e831e033ebaa5a13415578f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās pašās kurās visas draw komandas) Teksturējot tekstūra tiks izstiepta pa teksturēšanas apgabalu tā lai tā būtu pilnā izmērā šajā apgabalā(taisnstūrī). Zīmējot ārpus žī taisnstūra tekstūra tiks atkārtota.  <a href="#aee97001e831e033ebaa5a13415578f1a">vairāk...</a><br /></td></tr>
+<tr class="separator:aee97001e831e033ebaa5a13415578f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11fe6cd0c327bff9db46a3a8434623c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a11fe6cd0c327bff9db46a3a8434623c0">drawShape</a> (const std::vector&lt; <a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a> &gt; &amp;verts, unsigned mode)</td></tr>
+<tr class="memdesc:a11fe6cd0c327bff9db46a3a8434623c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">uzzīmē figūru. Uzzīmē figūru ar drawArrays() uzģenerējot teksturēšanas koordinātes un krāsu atbilstoši uzstādītajiem <a class="el" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a" title="Uzstāda zīmēšanas krāsu. ">setColor()</a> un <a class="el" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a" title="Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās p...">setTexturingRect()</a>.  <a href="#a11fe6cd0c327bff9db46a3a8434623c0">vairāk...</a><br /></td></tr>
+<tr class="separator:a11fe6cd0c327bff9db46a3a8434623c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ab047a8fdfe3291c61d2fd050cd108"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a64ab047a8fdfe3291c61d2fd050cd108">setLineWidth</a> (float width)</td></tr>
+<tr class="memdesc:a64ab047a8fdfe3291c61d2fd050cd108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uzstāda līniju platumu.  <a href="#a64ab047a8fdfe3291c61d2fd050cd108">vairāk...</a><br /></td></tr>
+<tr class="separator:a64ab047a8fdfe3291c61d2fd050cd108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ac30ab301705eb90dfee9a73f6f1615"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a8ac30ab301705eb90dfee9a73f6f1615">getLineWidth</a> ()</td></tr>
+<tr class="separator:a8ac30ab301705eb90dfee9a73f6f1615"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7555605ebaa53f4786b4b7267bd4806f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a7555605ebaa53f4786b4b7267bd4806f"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a7555605ebaa53f4786b4b7267bd4806f">toString</a> (const T &amp;v)</td></tr>
 <tr class="memdesc:a7555605ebaa53f4786b4b7267bd4806f"><td class="mdescLeft">&#160;</td><td class="mdescRight">pārvērš mainīgo par tekstu  <a href="#a7555605ebaa53f4786b4b7267bd4806f">vairāk...</a><br /></td></tr>
@@ -197,11 +229,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memitem:ad840b061fd8f5d5f34d6886c68ba7114"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ad840b061fd8f5d5f34d6886c68ba7114">setWindowTitle</a> (const std::string &amp;title)</td></tr>
 <tr class="memdesc:ad840b061fd8f5d5f34d6886c68ba7114"><td class="mdescLeft">&#160;</td><td class="mdescRight">nomaina loga virsrakstu  <a href="#ad840b061fd8f5d5f34d6886c68ba7114">vairāk...</a><br /></td></tr>
 <tr class="separator:ad840b061fd8f5d5f34d6886c68ba7114"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c5ea5a9674cfd977dd05c3cd57eef7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#aa5c5ea5a9674cfd977dd05c3cd57eef7">getWindowWidth</a> ()</td></tr>
-<tr class="separator:aa5c5ea5a9674cfd977dd05c3cd57eef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69348f9544eb27fb9a9a02039d4bb731"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a69348f9544eb27fb9a9a02039d4bb731">drawLine</a> (const std::vector&lt; <a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a> &gt; &amp;points, float w=1)</td></tr>
-<tr class="memdesc:a69348f9544eb27fb9a9a02039d4bb731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zīmē nepārtrauktu lauztu līniju.  <a href="#a69348f9544eb27fb9a9a02039d4bb731">vairāk...</a><br /></td></tr>
-<tr class="separator:a69348f9544eb27fb9a9a02039d4bb731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2813d5562902faeea143994c3bf198d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#a2813d5562902faeea143994c3bf198d0">drawLine</a> (const std::vector&lt; <a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a> &gt; &amp;points)</td></tr>
+<tr class="memdesc:a2813d5562902faeea143994c3bf198d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zīmē nepārtrauktu lauztu līniju.  <a href="#a2813d5562902faeea143994c3bf198d0">vairāk...</a><br /></td></tr>
+<tr class="separator:a2813d5562902faeea143994c3bf198d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ea5a57ea6b4014aca5cf6234709607"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekjpsgl.html#ae6ea5a57ea6b4014aca5cf6234709607">drawArrays</a> (const std::vector&lt; <a class="el" href="structkjpsgl_1_1_vec2.html">Vec2</a> &gt; &amp;vertices, unsigned mode=GL_TRIANGLES)</td></tr>
 <tr class="memdesc:ae6ea5a57ea6b4014aca5cf6234709607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zīmē masīvus (Vertex Arrays)  <a href="#ae6ea5a57ea6b4014aca5cf6234709607">vairāk...</a><br /></td></tr>
 <tr class="separator:ae6ea5a57ea6b4014aca5cf6234709607"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -549,7 +579,7 @@ zīmēšanas režīmi</div></div>
 
 </div>
 </div>
-<a class="anchor" id="ab1346fcf4b6d6913205ebd090fc57e00"></a>
+<a class="anchor" id="aebcc999adf6be8c74cfb424dae6db587"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -575,13 +605,7 @@ zīmēšanas režīmi</div></div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>segments</em> = <code>64</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>w</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>segments</em> = <code>64</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -598,14 +622,13 @@ zīmēšanas režīmi</div></div>
     <tr><td class="paramname">y</td><td>centra koordinate y </td></tr>
     <tr><td class="paramname">r</td><td>apļa radius </td></tr>
     <tr><td class="paramname">segments</td><td>segmentu skaits ko izmantot apļa zīmēšanai </td></tr>
-    <tr><td class="paramname">w</td><td>kontūras platums(resnums) </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a69348f9544eb27fb9a9a02039d4bb731"></a>
+<a class="anchor" id="a2813d5562902faeea143994c3bf198d0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -613,18 +636,8 @@ zīmēšanas režīmi</div></div>
           <td class="memname">void kjpsgl::drawLine </td>
           <td>(</td>
           <td class="paramtype">const std::vector&lt; Vec2 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>points</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>points</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>w</em> = <code>1</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -633,7 +646,6 @@ zīmēšanas režīmi</div></div>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">points</td><td>līnijas virsotnes </td></tr>
-    <tr><td class="paramname">w</td><td>līnijas platums(resnums) </td></tr>
   </table>
   </dd>
 </dl>
@@ -641,7 +653,7 @@ zīmēšanas režīmi</div></div>
 
 </div>
 </div>
-<a class="anchor" id="af0d20f67f9026518a36d0561c10bf6e1"></a>
+<a class="anchor" id="aff4f508f8d999be84552aff98d0a0e9b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -667,13 +679,7 @@ zīmēšanas režīmi</div></div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>y2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>w</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>y2</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -690,7 +696,6 @@ zīmēšanas režīmi</div></div>
     <tr><td class="paramname">y1</td><td>līnijas sākuma pozīcija y </td></tr>
     <tr><td class="paramname">x2</td><td>līnijas gala pozīcija x </td></tr>
     <tr><td class="paramname">y2</td><td>līnijas gala pozīcija y </td></tr>
-    <tr><td class="paramname">w</td><td>līnijas platums (resnums) </td></tr>
   </table>
   </dd>
 </dl>
@@ -747,57 +752,21 @@ zīmēšanas režīmi</div></div>
 
 </div>
 </div>
-<a class="anchor" id="ad5ddcbc7e1ff2929fc281cf1e41d5c4d"></a>
+<a class="anchor" id="a11fe6cd0c327bff9db46a3a8434623c0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void kjpsgl::drawRectangle </td>
+          <td class="memname">void kjpsgl::drawShape </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>left</em>, </td>
+          <td class="paramtype">const std::vector&lt; Vec2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>verts</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>bottom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>right</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>top</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uvLeft</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uvBottom</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uvRight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>uvTop</em>&#160;</td>
+          <td class="paramtype">unsigned&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -807,20 +776,15 @@ zīmēšanas režīmi</div></div>
       </table>
 </div><div class="memdoc">
 
-<p>Uzzīmē taisnstūri norādot tekstūras kordinates. </p>
+<p>uzzīmē figūru. Uzzīmē figūru ar drawArrays() uzģenerējot teksturēšanas koordinātes un krāsu atbilstoši uzstādītajiem <a class="el" href="namespacekjpsgl.html#a67452f65305694fe9044216a1f1f610a" title="Uzstāda zīmēšanas krāsu. ">setColor()</a> un <a class="el" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a" title="Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās p...">setTexturingRect()</a>. </p>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
-    <tr><td class="paramname">left</td><td>kreisās malas x kordinate </td></tr>
-    <tr><td class="paramname">bottom</td><td>apakšējās malas y kordinate </td></tr>
-    <tr><td class="paramname">right</td><td>labās malas x kordinate </td></tr>
-    <tr><td class="paramname">top</td><td>augšējās malas y kordinate</td></tr>
-    <tr><td class="paramname">uvLeft</td><td>kreisās malas tekstūras x kordinate [0;1] </td></tr>
-    <tr><td class="paramname">uvBottom</td><td>apakšējās malas tekstūras y kordinate [0;1] </td></tr>
-    <tr><td class="paramname">uvRight</td><td>labās malas tekstūras x kordinate [0;1] </td></tr>
-    <tr><td class="paramname">uvTop</td><td>augšējās malas tekstūras y kordinate [0;1] </td></tr>
+    <tr><td class="paramname">verts</td><td>figūras virsotnes </td></tr>
+    <tr><td class="paramname">mode</td><td>OpenGL zīmēšanas režīms, skatiet drawArrays() </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>Skatīties arī</dt><dd>drawArrays() </dd></dl>
 
 </div>
 </div>
@@ -887,7 +851,7 @@ zīmēšanas režīmi</div></div>
 
 </div>
 </div>
-<a class="anchor" id="ac79362795889e400cf03257f2c73fa41"></a>
+<a class="anchor" id="aa715e5ff88da16558945a95d09bd6d8c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -925,13 +889,7 @@ zīmēšanas režīmi</div></div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>cy</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>w</em> = <code>1</code>&#160;</td>
+          <td class="paramname"><em>cy</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -950,7 +908,6 @@ zīmēšanas režīmi</div></div>
     <tr><td class="paramname">by</td><td>B y koordinate </td></tr>
     <tr><td class="paramname">cx</td><td>C x koordinate </td></tr>
     <tr><td class="paramname">cy</td><td>C y koordinate </td></tr>
-    <tr><td class="paramname">w</td><td>kontūras platums(resnums) </td></tr>
   </table>
   </dd>
 </dl>
@@ -1257,6 +1214,23 @@ zīmēšanas režīmi</div></div>
 
 </div>
 </div>
+<a class="anchor" id="a8ac30ab301705eb90dfee9a73f6f1615"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float kjpsgl::getLineWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Atgriež</dt><dd>pašreizējais līnijas platums* </dd></dl>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#a64ab047a8fdfe3291c61d2fd050cd108" title="Uzstāda līniju platumu. ">setLineWidth()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="ad837b823002784acd162219b00b51b3c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1508,6 +1482,23 @@ Kā izskatās anti aliasing</div></div>
 
 </div>
 </div>
+<a class="anchor" id="a834b1ea47d6454580239ea310aa72a26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool kjpsgl::isInit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Atgriež</dt><dd>true ja bibliotēka ir veiksmīgi inicializēta </dd></dl>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#ae6175b179d3f2ffc572b879a8b0665c8" title="Inicializē bibliotēku un izveido zīmēšanas logu. ">init()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a8de7976019f62c33b60a9cfa8eff16be"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1531,6 +1522,41 @@ Kā izskatās anti aliasing</div></div>
 </dl>
 <dl class="section return"><dt>Atgriež</dt><dd>ielādētās tekstūras id. </dd></dl>
 <dl class="section warning"><dt>Brīdinājums</dt><dd>return atgrieztais id nav opengl tekstūras id bet gan bibliotēkai specifisks! </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0c8178e65849010a424ee9af8a994bae"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kjpsgl::moveView </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>pabīda skatu </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>attālums par cik pakustināt skata x kordināti </td></tr>
+    <tr><td class="paramname">y</td><td>attālums par cik pakustināt skata y kordināti </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1567,6 +1593,30 @@ Kā izskatās anti aliasing</div></div>
   </dd>
 </dl>
 <dl class="section return"><dt>Atgriež</dt><dd>nejauši izvēlēts skaitlis intervālā [a;b] </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aad4e814f6c6610c3e4429f997824059a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kjpsgl::rotateView </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>rotē skatu </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>lenķiskais lielums grādos </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1619,6 +1669,31 @@ Kā izskatās anti aliasing</div></div>
 
 </div>
 </div>
+<a class="anchor" id="a64ab047a8fdfe3291c61d2fd050cd108"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kjpsgl::setLineWidth </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uzstāda līniju platumu. </p>
+<dl class="section note"><dt>Piezīme</dt><dd>Funkcija attiecas uz visām drawOutline un drawLine komandām. </dd></dl>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>jaunais līnijas platums pikseļos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="aa7c11a013c5c5ff81d49ada6ca9a6830"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1634,9 +1709,86 @@ Kā izskatās anti aliasing</div></div>
 </div><div class="memdoc">
 
 <p>Uzstāda zīmēšanai tekstūru. </p>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#aee97001e831e033ebaa5a13415578f1a" title="Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās p...">setTexturingRect()</a> </dd></dl>
 <dl class="params"><dt>Parametri</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>kuru tekstūru izmantot zīmēšanai, vai -1 lai neizmantotu nekādu tekstūru zīmēšanai </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="add412ad970cac281ebca4ed9e6a40f78"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kjpsgl::setTexturingMode </td>
+          <td>(</td>
+          <td class="paramtype">TexturingMode&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uzstāda teksturēšanas režīmu. </p>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>jaunais teksturēšanas režīms </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#a9f233b1baec3965d6309723ac9b70d61" title="teksturēšanas režīms ">TexturingMode</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aee97001e831e033ebaa5a13415578f1a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void kjpsgl::setTexturingRect </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>bottom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>top</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uzstāda teksturēšanas apgabalu. Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās pašās kurās visas draw komandas) Teksturējot tekstūra tiks izstiepta pa teksturēšanas apgabalu tā lai tā būtu pilnā izmērā šajā apgabalā(taisnstūrī). Zīmējot ārpus žī taisnstūra tekstūra tiks atkārtota. </p>
+<dl class="section note"><dt>Piezīme</dt><dd>Šī komanda darbojas tikai Manuālā teksturēšanas režīmā (setTexturingMode(TexturingMode::Manual)) </dd></dl>
+<dl class="section see"><dt>Skatīties arī</dt><dd><a class="el" href="namespacekjpsgl.html#add412ad970cac281ebca4ed9e6a40f78" title="Uzstāda teksturēšanas režīmu. ">setTexturingMode()</a> </dd></dl>
+<dl class="params"><dt>Parametri</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td>teksturēšanas apgabala kreisā mala </td></tr>
+    <tr><td class="paramname">bottom</td><td>teksturēšanas apgabala apakšējā mala </td></tr>
+    <tr><td class="paramname">right</td><td>teksturēšanas apgabala labā mala </td></tr>
+    <tr><td class="paramname">top</td><td>teksturēšanas apgabala augšējā mala </td></tr>
   </table>
   </dd>
 </dl>
@@ -1819,7 +1971,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Ģenerēts Piekt Okt 3 2014 21:54:42 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
+Ģenerēts Sest Okt 18 2014 22:41:39 projektam KjpsGL ar &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
