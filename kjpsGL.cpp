@@ -263,6 +263,8 @@ void drawRectangle(float left, float bottom, float right, float top)
 
 void drawRectangle(float left, float bottom, float right, float top, float uvLeft,float uvBottom, float uvRight,float uvTop)
 {
+    uvTop = 1.0f - uvTop;
+    uvBottom = 1.0f - uvBottom;
     drawArrays(
     {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
     {Vec2(uvLeft,uvBottom),Vec2(uvRight,uvBottom),Vec2(uvRight,uvTop),Vec2(uvLeft,uvTop)},
