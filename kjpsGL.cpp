@@ -37,6 +37,9 @@ array<bool,16> mouseButtons;
 Vec2 mousePos;
 int mouseWheel;
 bool inited = false;
+Vec2 texPos,texSize;
+float lineWidth;
+TexturingMode texturingMode;
 
 //  struct & class implementations:
 Vec2::Vec2(float x, float y): x(x), y(y) {}
@@ -230,61 +233,27 @@ void setColor(unsigned char red, unsigned char green, unsigned char blue, unsign
 
 void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy)
 {
-    if (boundTexture>=0)
-    {
-        const Vec2 s = boundTexture>=0?Vec2(getTextureWidth(boundTexture),getTextureHeight(boundTexture)):Vec2(1,1);
-        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},
-        {Vec2(ax/s.x,ay/s.y),Vec2(bx/s.x,by/s.y),Vec2(cx/s.x,cy/s.y)},GL_TRIANGLES);
-    }
-    else
-    {
-        drawArrays({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},vector<Color>(6,color),GL_TRIANGLES);
-    }
+    drawShape({Vec2(ax,ay),Vec2(bx,by),Vec2(cx,cy)},GL_TRIANGLES);
 }
 
 void drawRectangle(float left, float bottom, float right, float top)
 {
-    if (boundTexture>=0)
-    {
-        drawArrays(
-        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
-        {Vec2(0,1),Vec2(1,1),Vec2(1,0),Vec2(0,0)},
-        {color,color,color,color},
-        GL_QUADS);
-    }
-    else
-    {
-        drawArrays(
-        {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
-        {color,color,color,color},
-        GL_QUADS);
-    }
+    drawShape({Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},GL_QUADS);
 }
 
-void drawRectangle(float left, float bottom, float right, float top, float uvLeft,float uvBottom, float uvRight,float uvTop)
+void drawLine(float x1, float y1, float x2, float y2)
 {
-    uvTop = 1.0f - uvTop;
-    uvBottom = 1.0f - uvBottom;
-    drawArrays(
-    {Vec2(left,bottom),Vec2(right,bottom),Vec2(right,top),Vec2(left,top)},
-    {Vec2(uvLeft,uvBottom),Vec2(uvRight,uvBottom),Vec2(uvRight,uvTop),Vec2(uvLeft,uvTop)},
-    {color,color,color,color},
-    GL_QUADS);
+    drawLine({Vec2(x1,y1), Vec2(x2,y2)});
 }
 
-void drawLine(float x1, float y1, float x2, float y2,float w)
+void drawLine(const vector<Vec2>& points)
 {
-    drawLine({Vec2(x1,y1), Vec2(x2,y2)},w);
-}
-
-void drawLine(const vector<Vec2>& points,float w)
-{
-    w*=.5f;
+    float w = lineWidth * .5f;
     vector<Vec2> verts;
     verts.reserve(points.size()*4);
 
     verts.resize(2); // first two reserved for later
-    for (int i=1; i<points.size(); ++i)
+    for (unsigned i=1; i<points.size(); ++i)
     {
         Vec2 dir = Vec2(points[i].x-points[i-1].x,points[i].y-points[i-1].y).normalized();
         // first normals instead of vertices
@@ -296,7 +265,7 @@ void drawLine(const vector<Vec2>& points,float w)
     verts[0] = verts[2];
     verts[1] = verts[3];
 
-    for (int i=2; i< verts.size()-2; ++i)
+    for (unsigned i=2; i< verts.size()-2; ++i)
     {
         float d = Vec2::dot(verts[i],verts[i+2])+1;
         verts[i].x += verts[i+2].x;
@@ -357,7 +326,7 @@ void drawLine(const vector<Vec2>& points,float w)
         verts[verts.size()-1].y *= w;
     }
 
-    for (int i=0; i<points.size(); ++i)
+    for (unsigned i=0; i<points.size(); ++i)
     {
         verts[i*2].x += points[i].x;
         verts[i*2].y += points[i].y;
@@ -365,18 +334,7 @@ void drawLine(const vector<Vec2>& points,float w)
         verts[i*2+1].y += points[i].y;
     }
 
-    if (boundTexture>=0)
-    {
-        vector<Vec2> uv = verts;
-        const Vec2 s (getTextureWidth(boundTexture),getTextureHeight(boundTexture));
-        for (int i=0; i<verts.size(); ++i)
-        {
-            uv[i].x/=s.x;
-            uv[i].y/=s.y;
-        }
-        drawArrays(verts,uv,vector<Color>(verts.size(),color),GL_QUAD_STRIP);
-    }
-    else drawArrays(verts,GL_QUAD_STRIP);
+    drawShape(verts,GL_QUAD_STRIP);
 }
 
 void setView(float left, float bottom, float right, float top)
@@ -487,29 +445,22 @@ void drawCircle(float x, float y, float r, int segments)
         float a = (i/float(segments)) *(2.0f*3.141592653589);
         verts.emplace_back(x+sin(a)*r,y+cos(a)*r);
     }
-    if (boundTexture>=0)
-    {
-        vector<Vec2> uvs = verts;
-        const Vec2 s (getTextureWidth(boundTexture),getTextureHeight(boundTexture));
-        for (unsigned i=0; i<uvs.size(); ++i) uvs[i].x/=s.x, uvs[i].y/=s.y;
-        drawArrays(verts,uvs,vector<Color>(verts.size(),color),GL_TRIANGLE_FAN);
-    }
-    else drawArrays(verts,GL_TRIANGLE_FAN);
+    drawShape(verts,GL_TRIANGLE_FAN);
 }
 
-void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy,float w)
+void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy)
 {
     vector<Vec2> v {Vec2(ax,ay),Vec2(bx,by), Vec2(cx,cy),Vec2(ax,ay)};
-    drawLine(v,w);
+    drawLine(v);
 }
 
-void drawRectangleOutline(float left, float bottom, float right, float top,float w)
+void drawRectangleOutline(float left, float bottom, float right, float top)
 {
     vector<Vec2> v {Vec2(left,top),Vec2(left,bottom),Vec2(right,bottom), Vec2(right,top),Vec2(left,top)};
-    drawLine(v,w);
+    drawLine(v);
 }
 
-void drawCircleOutline(float x, float y, float r,float w, int segments)
+void drawCircleOutline(float x, float y, float r, int segments)
 {
     vector<Vec2> verts;
     verts.reserve(segments+1);
@@ -519,7 +470,7 @@ void drawCircleOutline(float x, float y, float r,float w, int segments)
         verts.emplace_back(x+sin(a)*r,y+cos(a)*r);
     }
     verts.push_back(verts.front());
-    drawLine(verts,w);
+    drawLine(verts);
 }
 
 int loadTexture(const string& filename)
@@ -564,29 +515,29 @@ int getTextureWidth(int id)
     return textureSizes[id].x;
 }
 
+void setTexturingMode(TexturingMode mode){
+    texturingMode = mode;
+}
+
 void setTexture(int id)
 {
+    if (boundTexture == id) return;
     errorAssert(isInit(),"kjpsgl not initialized!");
     if (id<0)
     {
-        if (boundTexture>=0)
-        {
-            glBindTexture(GL_TEXTURE_2D, 0);
-            glDisable(GL_TEXTURE_2D);
-            boundTexture = -1;
-        }
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+        boundTexture = -1;
     }
     else
     {
         if (id<0 || id>=int(textures.size())) fatalError("Texture ID don't exist!");
-        if (boundTexture != id)
-        {
-            unsigned tex = textures[id];
-            if (tex==0) fatalError("Can't set texture which is destroyed!");
-            glEnable(GL_TEXTURE_2D);
-            glBindTexture(GL_TEXTURE_2D, tex);
-            boundTexture = id;
-        }
+
+        unsigned tex = textures[id];
+        if (tex==0) fatalError("Can't set texture which is destroyed!");
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, tex);
+        boundTexture = id;
     }
 }
 
@@ -671,4 +622,60 @@ unsigned getTime()
 }
 
 bool isInit(){return inited;}
+
+void setTexturingRect(float left,float bottom, float right, float top)
+{
+    texPos.x = left;
+    texPos.y = bottom;
+    texSize.x = right-left;
+    texSize.y = top-bottom;
+}
+
+void drawShape(const std::vector<Vec2>& verts,unsigned mode){
+    if (boundTexture>=0)
+    {
+        vector<Vec2> uv = verts;
+        Vec2 off;
+        Vec2 scale = texSize;
+        switch (texturingMode){
+            case (TexturingMode::Repeat):
+                off = texPos;
+                scale.x = 1.0f/getTextureWidth(boundTexture);
+                scale.y = 1.0f/getTextureHeight(boundTexture);
+                break;
+
+            case (TexturingMode::Stretch):{
+                Vec2 mn=Vec2(999999999,999999999),mx=Vec2(-999999999,-999999999);
+                for (auto v : uv){
+                    mn.x = min(mn.x,v.x);
+                    mn.y = min(mn.y,v.y);
+                    mx.x = max(mx.x,v.x);
+                    mx.y = max(mx.y,v.y);
+                }
+                scale.x = 1.0f/(mx.x-mn.x);
+                scale.y = 1.0f/(mx.y-mn.y);
+                break;
+            }
+
+            case (TexturingMode::Manual):
+                off = texPos;
+                scale.x = 1.0f/texSize.x;
+                scale.y = 1.0f/texSize.y;
+                break;
+        }
+        for (auto& v : uv){
+            v.x =  (v.x-off.x) * scale.x;
+            v.y =  (-v.y+off.y) * scale.y;
+        }
+        drawArrays(verts,uv,vector<Color>(verts.size(),color),mode);
+    } else {
+        drawArrays(verts,vector<Color>(verts.size(),color),mode);
+    }
+}
+
+void setLineWidth(float w){
+    lineWidth = w;
+}
+
+float getLineWidth(){return lineWidth;}
 }

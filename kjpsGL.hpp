@@ -35,6 +35,15 @@ struct Color
     Color(unsigned char r=0, unsigned char g=0, unsigned char b=0, unsigned char a = 255);
 };
 
+//! \brief teksturēšanas režīms
+enum TexturingMode
+{
+    // 0 slot reserved
+    Repeat = 1,
+    Stretch = 2,
+    Manual = 3
+};
+
 /*! \brief pārvērš mainīgo par tekstu
     \param v mainīgais kura vērtību pārērst par tekstu
     \return v tekstuālu reprezentāciju
@@ -149,6 +158,15 @@ void resetView();
     \param alpha caurspīdība [0(pilnīgi caurspīdīgs), 255(pilnīgi necaurspīdīgs)]*/
 void setColor(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha = 255);
 
+/*! \brief Uzstāda līniju platumu.
+    \note Funkcija attiecas uz visām drawOutline un drawLine komandām.
+    \param width jaunais līnijas platums pikseļos*/
+void setLineWidth(float width);
+
+/*! \return pašreizējais līnijas platums*
+    \sa setLineWidth()*/
+float getLineWidth();
+
 /*! \brief Uzzīmē trijstūri ar virsotnēm A,B,C
     \param ax A x koordinate
     \param ay A y koordinate
@@ -166,19 +184,6 @@ void drawTriangle(float ax, float ay, float bx, float by, float cx, float cy);
 */
 void drawRectangle(float left, float bottom, float right, float top);
 
-/*! \brief Uzzīmē taisnstūri norādot tekstūras kordinates
-    \param left kreisās malas x kordinate
-    \param bottom apakšējās malas y kordinate
-    \param right labās malas x kordinate
-    \param top augšējās malas y kordinate
-
-    \param uvLeft kreisās malas tekstūras x kordinate [0;1]
-    \param uvBottom apakšējās malas tekstūras y kordinate [0;1]
-    \param uvRight labās malas tekstūras x kordinate [0;1]
-    \param uvTop augšējās malas tekstūras y kordinate [0;1]
-*/
-void drawRectangle(float left, float bottom, float right, float top, float uvLeft,float uvBottom, float uvRight,float uvTop);
-
 /*! \brief Uzzīmē apli
     \param x centra koordinate x
     \param y centra koordinate y
@@ -194,16 +199,16 @@ void drawCircle(float x, float y, float r, int segments = 64);
     \param cx C x koordinate
     \param cy C y koordinate
     \param w kontūras platums(resnums)*/
-void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy,float w = 1);
+void drawTriangleOutline(float ax, float ay, float bx, float by, float cx, float cy);
 //! Uzzīmē taisnstūra kontūru
-void drawRectangleOutline(float left, float bottom, float right, float top,float w = 1);
+void drawRectangleOutline(float left, float bottom, float right, float top);
 /*! \brief Uzzīmē apļa kontūru
     \param x centra koordinate x
     \param y centra koordinate y
     \param r apļa radius
     \param w kontūras platums(resnums)
     \param segments segmentu skaits ko izmantot apļa zīmēšanai*/
-void drawCircleOutline(float x, float y, float r, float w = 1,int segments = 64);
+void drawCircleOutline(float x, float y, float r, int segments = 64);
 
 /*! \brief Zīmē līniju
     \param x1 līnijas sākuma pozīcija x
@@ -212,12 +217,12 @@ void drawCircleOutline(float x, float y, float r, float w = 1,int segments = 64)
     \param y2 līnijas gala pozīcija y
     \param w līnijas platums (resnums)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-void drawLine(float x1, float y1, float x2, float y2,float w = 1);
+void drawLine(float x1, float y1, float x2, float y2);
 /*! \brief Zīmē nepārtrauktu lauztu līniju
     \param points līnijas virsotnes
     \param w līnijas platums(resnums)
     \warning zīmējot caurspīdīgas līnijas ar caps ir redzamas vizuālas nepilnības (līnijas galu noapaļojumi pārklājas ar pašu līniju) */
-void drawLine(const std::vector<Vec2>& points,float w=1);
+void drawLine(const std::vector<Vec2>& points);
 
 /*! \brief Zīmē masīvus (Vertex Arrays)
     \param vertices virsotnes
@@ -266,8 +271,26 @@ int getTextureWidth(int id);
 int getTextureHeight(int id);
 
 /*! \brief Uzstāda zīmēšanai tekstūru.
+    \sa setTexturingRect()
     \param id kuru tekstūru izmantot zīmēšanai, vai -1 lai neizmantotu nekādu tekstūru zīmēšanai*/
 void setTexture(int id = -1);
+
+/*! \brief Uzstāda teksturēšanas režīmu
+    \param mode jaunais teksturēšanas režīms
+    \sa TexturingMode*/
+void setTexturingMode(TexturingMode mode);
+
+/*! \brief Uzstāda teksturēšanas apgabalu.
+    Teksturēšanas apgabals ir taisnstūris worldspace koordinatēs (tajās pašās kurās visas draw komandas)
+    Teksturējot tekstūra tiks izstiepta pa teksturēšanas apgabalu tā lai tā būtu pilnā izmērā šajā apgabalā(taisnstūrī).
+    Zīmējot ārpus žī taisnstūra tekstūra tiks atkārtota.
+    \note Šī komanda darbojas tikai Manuālā teksturēšanas režīmā (setTexturingMode(TexturingMode::Manual))
+    \sa setTexturingMode()
+    \param left teksturēšanas apgabala kreisā mala
+    \param bottom teksturēšanas apgabala apakšējā mala
+    \param right teksturēšanas apgabala labā mala
+    \param top teksturēšanas apgabala augšējā mala*/
+void setTexturingRect(float left,float bottom, float right, float top);
 
 /*! \brief Uzzina vai kāds tastatūras taustiņš ir nospiests
     \param key taustiņa nosaukums
@@ -553,4 +576,12 @@ unsigned getTime();
 /*! \return true ja bibliotēka ir veiksmīgi inicializēta
     \sa init()*/
 bool isInit();
+
+/*! \brief uzzīmē figūru.
+    Uzzīmē figūru ar drawArrays() uzģenerējot teksturēšanas koordinātes un krāsu atbilstoši uzstādītajiem setColor() un setTexturingRect().
+    \param vers figūras virsotnes
+    \param mode OpenGL zīmēšanas režīms, skatiet drawArrays()
+    \sa drawArrays()
+*/
+void drawShape(const std::vector<Vec2>& verts,unsigned mode);
 }
