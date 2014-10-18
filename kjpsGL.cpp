@@ -15,6 +15,8 @@
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,("Function "+std::string(__FUNCTION__)+"() ERROR! ").c_str(),msg.c_str(),nullptr ); \
     assert(false); }while(0)
 
+#define errorAssert(x,msg) do{if (!x) {fatalError(msg);}}while(0)
+
 namespace kjpsgl
 {
 using namespace std;
@@ -34,6 +36,7 @@ bool anyKey = false;
 array<bool,16> mouseButtons;
 Vec2 mousePos;
 int mouseWheel;
+bool inited = false;
 
 //  struct & class implementations:
 Vec2::Vec2(float x, float y): x(x), y(y) {}
@@ -56,9 +59,11 @@ Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 //  Function implementations:
 void init(int width, int height, bool fullscreen,int msaa)
 {
+    errorAssert(!isInit(),"kjpsgl is already initialized!");
     {
         // Init SDL & window
         if (SDL_Init(SDL_INIT_EVERYTHING ^ SDL_INIT_HAPTIC) != 0) fatalError("SDL_Init failed!");
+        inited = true;
 
         // Request opengl 2.0 context.
         if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2) != 0) fatalError("SDL_GL_SetAttribute fail!");
@@ -122,6 +127,7 @@ void init(int width, int height, bool fullscreen,int msaa)
 
 void update()
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     {
         // calculate delta time
         unsigned long long delta = lastFrame;
@@ -201,11 +207,13 @@ void update()
 
 void display()
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     SDL_GL_SwapWindow(window);
 }
 
 void setWindowTitle(const string& txt)
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     SDL_SetWindowTitle(window,txt.c_str());
 }
 
@@ -404,6 +412,7 @@ float getDeltaTime()
 
 void setVsync(bool state)
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     if (SDL_GL_SetSwapInterval(state) != 0) fatalError("Can't setVsync()!");
 }
 
@@ -513,6 +522,7 @@ void drawCircleOutline(float x, float y, float r,float w, int segments)
 
 int loadTexture(const string& filename)
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     vector<unsigned char> image;
     unsigned width, height;
     unsigned error = lodepng::decode(image, width, height, filename);
@@ -532,6 +542,7 @@ int loadTexture(const string& filename)
 
 void destroyTexture(int id)
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     if (id<0 || id>=int(textures.size())) fatalError("Texture ID don't exist!");
     GLuint tex = textures[id];
     if (tex==0) fatalError("Can't destroy Texture twice!");
@@ -553,6 +564,7 @@ int getTextureWidth(int id)
 
 void setTexture(int id)
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     if (id<0)
     {
         if (boundTexture>=0)
@@ -614,6 +626,7 @@ int getMouseWheel()
 
 int getWindowHeight()
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     int w,h;
     SDL_GetWindowSize(window,&w,&h);
     return h;
@@ -621,6 +634,7 @@ int getWindowHeight()
 
 int getWindowWidth()
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     int w,h;
     SDL_GetWindowSize(window,&w,&h);
     return w;
@@ -628,6 +642,7 @@ int getWindowWidth()
 
 long long random()
 {
+    errorAssert(isInit(),"kjpsgl not initialized!");
     randomSeed ^= randomSeed >> 12; // a
     randomSeed ^= randomSeed << 25; // b
     randomSeed ^= randomSeed >> 27; // c
@@ -637,7 +652,7 @@ long long random()
 // in range [a;b]
 int randomInRange(int a, int b)
 {
-    assert(a <= b);
+    errorAssert(a <= b,"wrong interval (a>b0");
     uint64_t r = random();
     r %= b - a + 1;
     return a + int(r);
@@ -652,4 +667,6 @@ unsigned getTime()
 {
     return SDL_GetTicks();
 }
+
+bool isInit(){return inited;}
 }

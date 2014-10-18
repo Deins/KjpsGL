@@ -549,4 +549,8 @@ void sleep(unsigned ms);
     \warning laiks sasniegs 32 bitu integer robežu un sāks skaitīties no sākuma pēc ~49dienām
     */
 unsigned getTime();
+
+/*! \return true ja bibliotēka ir veiksmīgi inicializēta
+    \sa init()*/
+bool isInit();
 }
