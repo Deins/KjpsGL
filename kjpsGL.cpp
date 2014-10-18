@@ -15,7 +15,7 @@
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR,("Function "+std::string(__FUNCTION__)+"() ERROR! ").c_str(),msg.c_str(),nullptr ); \
     assert(false); }while(0)
 
-#define errorAssert(x,msg) do{if (!x) {fatalError(msg);}}while(0)
+#define errorAssert(x,msg) do{if (!(x)) {fatalError(msg);}}while(0)
 
 namespace kjpsgl
 {
@@ -606,7 +606,7 @@ long long random()
 // in range [a;b]
 int randomInRange(int a, int b)
 {
-    errorAssert(a <= b,"wrong interval (a>b0");
+    errorAssert(a <= b,"wrong interval (a>b");
     uint64_t r = random();
     r %= b - a + 1;
     return a + int(r);
@@ -658,7 +658,6 @@ void drawShape(const std::vector<Vec2>& verts,unsigned mode)
                 mx.x = max(mx.x,v.x);
                 mx.y = max(mx.y,v.y);
             }
-            cout << (mx.x-mn.x) << ' ' << (mx.y-mn.y) << endl;
             scale.x = 1.0f/(mx.x-mn.x);
             scale.y = 1.0f/(mx.y-mn.y);
             off = Vec2(mn.x,mn.y);
